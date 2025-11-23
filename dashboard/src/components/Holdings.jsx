@@ -5,21 +5,33 @@ import { VerticalGraph } from "./VerticalGraph";
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
+  const loadHoldings = async () => {
+    try {
+      const res = await axios.get("http://localhost:3002/allHoldings");
+      setAllHoldings(res.data || []);
+    } catch (error) {
+      console.error("Error loading holdings:", error);
+    }
+  };
+
   useEffect(() => {
-    axios.get("http://localhost:3002/allHoldings").then((res) => {
-      setAllHoldings(res.data);
-    });
+    loadHoldings();
+
+    // AUTO REFRESH HOLDINGS EVERY 3 SECONDS
+    const interval = setInterval(loadHoldings, 3000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  const labels = allHoldings.map((stock) => stock.name);
+  const labels = allHoldings.map((s) => s.name);
 
   const data = {
     labels,
     datasets: [
       {
         label: "Stock Price",
-        data: allHoldings.map((stock) => stock.price),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        data: allHoldings.map((s) => s.price || 0),
+        backgroundColor: "rgba(255,99,132,0.5)",
       },
     ],
   };
@@ -33,59 +45,47 @@ const Holdings = () => {
           <thead>
             <tr>
               <th>Instrument</th>
-              <th>Qty.</th>
-              <th>Avg. cost</th>
+              <th>Qty</th>
+              <th>Avg. Cost</th>
               <th>LTP</th>
-              <th>Cur. val</th>
+              <th>Cur. Val</th>
               <th>P&amp;L</th>
-              <th>Net chg.</th>
-              <th>Day chg.</th>
+              <th>Net Chg</th>
+              <th>Day Chg</th>
             </tr>
           </thead>
 
           <tbody>
-            {allHoldings.map((stock, index) => {
-              const curValue = stock.price * stock.qty;
-              const isProfit = curValue - stock.avg * stock.qty >= 0.0;
-              const profClass = isProfit ? "profit" : "loss";
-              const dayClass = stock.isLoss ? "loss" : "profit";
+            {allHoldings.map((stock) => {
+              const qty = stock.qty || 0;
+              const avg = stock.avg || 0;
+              const price = stock.price || 0;
+
+              const curVal = qty * price;
+              const profit = curVal - qty * avg;
+              const isProfit = profit >= 0;
 
               return (
-                <tr key={index}>
+                <tr key={stock._id}>
                   <td>{stock.name}</td>
-                  <td>{stock.qty}</td>
-                  <td>{stock.avg.toFixed(2)}</td>
-                  <td>{stock.price.toFixed(2)}</td>
-                  <td>{curValue.toFixed(2)}</td>
-                  <td className={profClass}>
-                    {(curValue - stock.avg * stock.qty).toFixed(2)}
+                  <td>{qty}</td>
+                  <td>{avg.toFixed(2)}</td>
+                  <td>{price.toFixed(2)}</td>
+                  <td>{curVal.toFixed(2)}</td>
+                  <td className={isProfit ? "profit" : "loss"}>
+                    {profit.toFixed(2)}
                   </td>
-                  <td className={profClass}>{stock.net}</td>
-                  <td className={dayClass}>{stock.day}</td>
+                  <td className={isProfit ? "profit" : "loss"}>
+                    {stock.net}
+                  </td>
+                  <td className={stock.day.includes("-") ? "loss" : "profit"}>
+                    {stock.day}
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <h5>
-            29,875.<span>55</span>
-          </h5>
-          <p>Total investment</p>
-        </div>
-        <div className="col">
-          <h5>
-            31,428.<span>95</span>
-          </h5>
-          <p>Current value</p>
-        </div>
-        <div className="col">
-          <h5>1,553.40 (+5.20%)</h5>
-          <p>P&amp;L</p>
-        </div>
       </div>
 
       <VerticalGraph data={data} />

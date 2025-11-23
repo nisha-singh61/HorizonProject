@@ -8,21 +8,27 @@ const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  const { closeBuyWindow } = useContext(GeneralContext); //use the actual context
+  const { closeBuyWindow } = useContext(GeneralContext);
 
   const handleBuyClick = async () => {
-    await axios.post("http://localhost:3002/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+    try {
+      await axios.post("http://localhost:3002/newOrder", {
+        name: uid,
+        qty: stockQuantity,
+        price: stockPrice,
+        mode: "BUY",
+      });
 
-    closeBuyWindow(); //correctly closes modal
+      alert("Buy order placed!");
+
+      closeBuyWindow();
+    } catch (error) {
+      alert("Buy failed: " + (error.response?.data || "Unknown error"));
+    }
   };
 
   const handleCancelClick = () => {
-    closeBuyWindow(); // same here
+    closeBuyWindow();
   };
 
   return (
