@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Orders.css"; // IMPORTANT: new CSS
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -19,25 +20,24 @@ const Orders = () => {
 
   if (orders.length === 0) {
     return (
-      <div className="orders">
-        <div className="no-orders">
-          <p>You haven't placed any orders today</p>
-        </div>
+      <div className="orders empty-orders">
+        <p>You haven't placed any orders today</p>
       </div>
     );
   }
 
   return (
     <div className="orders">
-      <h2>Your Orders</h2>
+      <h2 className="orders-title">Orders</h2>
 
       <table className="orders-table">
         <thead>
           <tr>
             <th>Stock</th>
-            <th>Qty</th>
-            <th>Price</th>
+            <th>Quantity</th>
+            <th>Price (₹)</th>
             <th>Type</th>
+            <th>Time</th>
           </tr>
         </thead>
 
@@ -47,8 +47,13 @@ const Orders = () => {
               <td>{order.name}</td>
               <td>{order.qty}</td>
               <td>{order.price}</td>
-              <td style={{ color: order.mode === "BUY" ? "green" : "red" }}>
+
+              <td className={order.mode === "BUY" ? "buy-text" : "sell-text"}>
                 {order.mode}
+              </td>
+
+              <td>
+                {new Date(order.createdAt || order._id.substring(0, 8)).toLocaleString()}
               </td>
             </tr>
           ))}

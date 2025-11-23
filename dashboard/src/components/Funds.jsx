@@ -1,87 +1,113 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Funds.css";
 
 const Funds = () => {
   return (
-    <>
-      <div className="funds">
-        <p>Instant, zero-cost fund transfers with UPI </p>
-        <Link className="btn btn-green">Add funds</Link>
-        <Link className="btn btn-blue">Withdraw</Link>
+    <div className="funds-page">
+
+      {/* Header */}
+      <div className="funds-header">
+        <p className="info-text">Instant, zero-cost fund transfers with UPI</p>
+
+        <div className="buttons">
+          <Link className="btn green">Add funds</Link>
+          <Link className="btn blue">Withdraw</Link>
+        </div>
       </div>
 
-      <div className="row">
-        <div className="col">
-          <span>
-            <p>Equity</p>
-          </span>
+      {/* Two-Column Layout */}
+      <div className="funds-grid">
 
-          <div className="table">
-            <div className="data">
+        {/* EQUITY COLUMN */}
+        <div className="funds-card">
+          <h3>Equity</h3>
+
+          <div className="fund-table">
+
+            <div className="row-item">
               <p>Available margin</p>
-              <p className="imp colored">4,043.10</p>
+              <p className="value green">4,043.10</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Used margin</p>
-              <p className="imp">3,757.30</p>
+              <p className="value red">3,757.30</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Available cash</p>
-              <p className="imp">4,043.10</p>
+              <p className="value">4,043.10</p>
             </div>
+
             <hr />
-            <div className="data">
+
+            <div className="row-item">
               <p>Opening Balance</p>
               <p>4,043.10</p>
             </div>
-            <div className="data">
-              <p>Opening Balance</p>
+
+            <div className="row-item">
+              <p>Closing Balance</p>
               <p>3736.40</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Payin</p>
               <p>4064.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>SPAN</p>
               <p>0.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Delivery margin</p>
               <p>0.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Exposure</p>
               <p>0.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Options premium</p>
               <p>0.00</p>
             </div>
+
             <hr />
-            <div className="data">
+
+            <div className="row-item">
               <p>Collateral (Liquid funds)</p>
               <p>0.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Collateral (Equity)</p>
               <p>0.00</p>
             </div>
-            <div className="data">
+
+            <div className="row-item">
               <p>Total Collateral</p>
               <p>0.00</p>
             </div>
+
           </div>
         </div>
 
-        <div className="col">
-          <div className="commodity">
+        {/* COMMODITY COLUMN */}
+        <div className="funds-card">
+          <div className="commodity-box">
             <p>You don't have a commodity account</p>
-            <Link className="btn btn-blue">Open Account</Link>
+            <Link className="btn blue">Open Account</Link>
           </div>
         </div>
+
       </div>
-    </>
+
+    </div>
   );
 };
 

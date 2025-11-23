@@ -1,0 +1,75 @@
+.funds-page {
+  padding: 20px;
+  color: #333;
+}
+
+.funds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.info-text {
+  font-size: 14px;
+}
+
+.buttons .btn {
+  margin-left: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.green {
+  background: #28a745;
+  color: white;
+}
+
+.blue {
+  background: #007bff;
+  color: white;
+}
+
+/* Grid layout */
+.funds-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Cards */
+.funds-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.fund-table .row-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.value.green {
+  color: #1fa91f;
+}
+
+.value.red {
+  color: #e63946;
+}
+
+.commodity-box {
+  text-align: center;
+  padding: 40px 10px;
+}
