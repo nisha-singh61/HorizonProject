@@ -1,0 +1,78 @@
+/* Full-page background */
+.apps-container {
+  min-height: 100vh;
+  background: #f5f7fb; /* soft light background */
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #1c1c1c;
+}
+
+/* Centered content */
+.apps-content {
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Title & subtitle */
+.apps-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.apps-subtitle {
+  font-size: 1.1rem;
+  color: #6e7a89;
+  margin-bottom: 40px;
+}
+
+/* Grid */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+/* Tool card */
+.tool-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e3e6ee;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effects */
+.tool-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  border-color: #c9d8ff;
+}
+
+/* Icons */
+.tool-icon {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+.tool-btn {
+  margin-top: 15px;
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  background: #4ea6ff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.tool-btn:hover {
+  background: #3c8ce4;
+  box-shadow: 0 0 12px rgba(78, 166, 255, 0.5);
+}
