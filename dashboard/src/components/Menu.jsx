@@ -1,16 +1,19 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
+import './Menu.css'; 
 
-const Menu = () => {
+// Re-added the props needed for the username and logout functionality
+const Menu = ({ user, onLogout }) => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
+    // Optionally close the dropdown when a menu item is clicked
+    setIsProfileDropdownOpen(false); 
   };
 
-  const handleProfileClick = (index) => {
+  const handleProfileClick = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
@@ -19,9 +22,11 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
+      {/* Assuming /logo.png is the red arrow/kite logo seen in the screenshot */}
       <img src="/logo.png" style={{ width: "50px" }} alt="logo" />
       <div className="menus">
         <ul>
+          {/* Dashboard */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -33,6 +38,7 @@ const Menu = () => {
               </p>
             </Link>
           </li>
+          {/* Orders */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -44,6 +50,7 @@ const Menu = () => {
               </p>
             </Link>
           </li>
+          {/* Holdings */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -55,6 +62,7 @@ const Menu = () => {
               </p>
             </Link>
           </li>
+          {/* Positions (Expanded Component) */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -66,6 +74,7 @@ const Menu = () => {
               </p>
             </Link>
           </li>
+          {/* Funds (Expanded Component) */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -77,22 +86,35 @@ const Menu = () => {
               </p>
             </Link>
           </li>
+          {/* Apps (Expanded Component) */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
               to="/apps"
-              onClick={() => handleMenuClick(6)}
+              // Note: Changed index to 5 to keep the sequence clean
+              onClick={() => handleMenuClick(5)} 
             >
-              <p className={selectedMenu === 6 ? activeMenuClass : menuClass}>
+              <p className={selectedMenu === 5 ? activeMenuClass : menuClass}>
                 Apps
               </p>
             </Link>
           </li>
         </ul>
         <hr />
+        
+        {/* Profile and Logout Section */}
         <div className="profile" onClick={handleProfileClick}>
           <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+          {/* Use the 'user' prop for the username display */}
+          <p className="username">{user || "USERID"}</p>
+          
+          {/* Profile Dropdown (visible when isProfileDropdownOpen is true) */}
+          {isProfileDropdownOpen && (
+            <div className="dropdown">
+              {/* Use the 'onLogout' prop to handle logout */}
+              <button onClick={onLogout}>Logout</button>
+            </div>
+          )}
         </div>
       </div>
     </div>

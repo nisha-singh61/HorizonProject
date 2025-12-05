@@ -1,0 +1,115 @@
+/*
+ * Save this as FormStyles.css (or similar) and import it into Login.js and Signup.js
+ * Zerodha Kite Themed CSS for Login and Signup Forms (Safe, no 'body' selector)
+ */
+
+/* 1. Page Wrapper/Centering (replaces body styles) */
+.login-page-wrapper {
+  /* Inherit font family for consistency */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: #f7f7f7; /* Very light gray/off-white background */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Take up full viewport height */
+}
+
+/* 2. Form Container Styling (The White Card) */
+.form_container {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+/* 3. Heading Styling */
+.form_container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #444;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+/* 4. Form Field Layout */
+.form_container form > div {
+  margin-bottom: 20px;
+}
+
+/* 5. Label Styling */
+.form_container label {
+  display: block;
+  margin-bottom: 8px;
+  color: #777;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+/* 6. Input Field Styling */
+.form_container input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1em;
+  color: #333;
+  transition: border-color 0.2s;
+}
+
+.form_container input:focus {
+  border-color: #ff5722; /* Kite's primary red/orange on focus */
+  outline: none;
+  box-shadow: 0 0 0 1px #ff5722;
+}
+
+/* 7. Submit Button Styling (Primary Color) */
+.form_container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff5722; /* Zerodha's primary red/orange */
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.form_container button[type="submit"]:hover {
+  background-color: #e04a1b; /* Slightly darker shade on hover */
+}
+
+/* 8. Link/Span Styling below the button */
+.form_container span {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #777;
+}
+
+.form_container span a {
+  color: #007bff; /* Standard blue link color for clarity */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form_container span a:hover {
+  text-decoration: underline;
+}
+
+/* 9. Responsive Adjustments */
+@media (max-width: 600px) {
+  .form_container {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+}
