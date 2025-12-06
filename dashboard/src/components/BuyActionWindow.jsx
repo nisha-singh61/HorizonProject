@@ -7,12 +7,13 @@ import "./BuyActionWindow.css";
 const BuyActionWindow = ({ uid }) => {
 const [stockQuantity, setStockQuantity] = useState(1);
 const [stockPrice, setStockPrice] = useState(0.0);
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const { closeBuyWindow } = useContext(GeneralContext);
 
 const handleBuyClick = async () => {
 try {
-await axios.post("http://localhost:3002/newOrder", {
+await axios.post(`${API_BASE_URL}/newOrder`, {
 name: uid,
 qty: stockQuantity,
 price: stockPrice,
@@ -44,7 +45,7 @@ type="number"
 name="qty"
 id="qty"
 min="1"
-onChange={(e) => setStockQuantity(e.target.value)}
+onChange={(e) => setStockQuantity(Number(e.target.value))}
 value={stockQuantity}
 />
 </fieldset>
@@ -55,7 +56,7 @@ type="number"
 name="price"
 id="price"
 step="0.05"
-onChange={(e) => setStockPrice(e.target.value)}
+onChange={(e) => setStockPrice(Number(e.target.value))}
 value={stockPrice}
 />
 </fieldset>

@@ -19,13 +19,14 @@ const authRoute = require("./Routes/AuthRoute");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.VITE_MONGO_URL;
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
 
 const app = express();
 
 // --- Middleware Setup ---
 app.use(
 cors({
-origin: ["http://localhost:5173"],
+origin: [FRONTEND_ORIGIN],
 methods: ["GET", "POST", "PUT", "DELETE"],
 credentials: true,
 })

@@ -1,27 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+// Increased the interval for less aggressive polling
+const REFRESH_INTERVAL_MS = 15000; 
+
 const Holdings = () => {
-const [allHoldings, setAllHoldings] = useState([]);
+    const [allHoldings, setAllHoldings] = useState([]);
 
-const loadHoldings = async () => {
-try {
-const res = await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
-setAllHoldings(res.data || []);
-} catch (error) {
-console.error("Error loading holdings:", error);
-}
-};
+    // Use useCallback to memoize the function for useEffect dependencies
+    const loadHoldings = useCallback(async () => {
+        try {
+            const res = await axios.get(`${API_BASE_URL}/allHoldings`, { withCredentials: true });
+            // Ensure you are working with an array
+            setAllHoldings(Array.isArray(res.data) ? res.data : []); 
+        } catch (error) {
+            console.error("Error loading holdings:", error);
+        }
+    }, [API_BASE_URL]); // Dependency on API_BASE_URL (though it's constant)
 
-useEffect(() => {
-loadHoldings();
+    useEffect(() => {
+        loadHoldings();
 
-// AUTO REFRESH HOLDINGS EVERY 3 SECONDS
-const interval = setInterval(loadHoldings, 3000);
+        // Use the defined constant interval
+        const interval = setInterval(loadHoldings, REFRESH_INTERVAL_MS);
 
-return () => clearInterval(interval);
-}, []);
+        return () => clearInterval(interval);
+    }, [loadHoldings]); // Dependency on the memoized function
 
 const labels = allHoldings.map((s) => s.name);
 
@@ -30,7 +37,7 @@ labels,
 datasets: [
 {
 label: "Stock Price",
-data: allHoldings.map((s) => s.price || 0),
+data: allHoldings.map((s) => (s.qty * s.price) || 0),
 backgroundColor: "rgba(255,99,132,0.5)",
 },
 ],

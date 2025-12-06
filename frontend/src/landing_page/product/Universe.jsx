@@ -1,6 +1,13 @@
 import React from "react";
 
+const DASHBOARD_SIGNUP_URL = import.meta.env.VITE_DASHBOARD_SIGNUP_URL;
+
+
 function Universe() {
+   const handleSignInClick = () => {
+        window.location.href = DASHBOARD_SIGNUP_URL;
+   };
+   
   return (
     <div
       className="container universe-container"
@@ -103,7 +110,9 @@ function Universe() {
             </p>
           </div>
         </div>
-        <button className="universe-btn p-2 btn fs-5 mb-5">
+        <button 
+         onClick={handleSignInClick} 
+        className="universe-btn p-2 btn fs-5 mb-5">
           Sign up for free
         </button>
       </div>

@@ -4,6 +4,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import './FormStyles.css'; 
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Login = () => {
 const navigate = useNavigate(); 
 const [inputValue, setInputValue] = useState({
@@ -34,7 +36,7 @@ const handleSubmit = async (e) => {
 e.preventDefault();
 try {
 const { data } = await axios.post(
-"http://localhost:3002/login",
+ `${API_BASE_URL}/login`,
 {
 ...inputValue,
 },

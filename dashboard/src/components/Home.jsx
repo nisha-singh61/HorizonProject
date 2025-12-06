@@ -7,55 +7,68 @@ import TopBar from "./TopBar";
 import Dashboard from "./Dashboard";
 import Menu from "./Menu";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Home = () => {
-    // Note: 'token' is HTTP-only, 'isLoggedIn' is for client check
     const navigate = useNavigate();
+    // The token is secure, isLoggedIn is a public marker
     const [cookies, setCookie, removeCookie] = useCookies(["token", "isLoggedIn"]); 
     const [user, setUser] = useState("");
 
     useEffect(() => {
+        let isMounted = true; // Flag to prevent state updates on unmounted component
+
         const verifyUser = async () => {
-            // Check the client-readable marker cookie
+            // 1. Initial client-side check
             if (!cookies.isLoggedIn) { 
-                navigate("/login");
+                if (isMounted) navigate("/login");
             } else {
                 try {
-                    // Send request to server to verify the secure HTTP-only token
+                    // 2. Server-side verification (sends HTTP-only token)
                     const { data } = await axios.post(
-                        "http://localhost:3002", 
+                        `${API_BASE_URL}`, 
                         {},
                         { withCredentials: true } 
                     );
 
-                    if (!data.status) {
-                        // If server validation fails (token expired, etc.)
-                        removeCookie("token"); 
-                        removeCookie("isLoggedIn"); 
-                        navigate("/login");
-                    } else {
-                        // Success
-                        setUser(data.user); 
+                    if (isMounted) { // Check before state/navigation updates
+                        if (!data.status) {
+                            // Server validation failed (token expired, tampered)
+                            removeCookie("token", { path: "/" }); // Added path
+                            removeCookie("isLoggedIn", { path: "/" }); // Added path
+                            navigate("/login");
+                        } else {
+                            // Success
+                            setUser(data.user); 
+                        }
                     }
                 } catch (error) {
-                    // Handle network or server errors
-                    removeCookie("token"); 
-                    removeCookie("isLoggedIn"); 
-                    navigate("/login");
+                    if (isMounted) { // Check before state/navigation updates
+                        // Network error, assume unauthenticated
+                        removeCookie("token", { path: "/" }); // Added path
+                        removeCookie("isLoggedIn", { path: "/" }); // Added path
+                        navigate("/login");
+                    }
                 }
             }
         };
         verifyUser();
         
+        return () => {
+            isMounted = false; // Cleanup function runs when component unmounts
+        };
+        
     }, [cookies, navigate, removeCookie]);
 
     const handleLogout = async () => {
         try {
-            await axios.post("http://localhost:3002/logout", {}, { withCredentials: true });
+            // Attempt server-side session cleanup
+            await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
         } catch (error) {
             console.error("Server-side logout failed:", error); 
         }
         
-        // Clear both cookies client-side
+        // Clear both cookies client-side (essential)
         removeCookie("token", { path: "/" }); 
         removeCookie("isLoggedIn", { path: "/" }); 
         

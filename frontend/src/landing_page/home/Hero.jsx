@@ -1,6 +1,12 @@
 import React from "react";
 
+const DASHBOARD_SIGNUP_URL = import.meta.env.VITE_DASHBOARD_SIGNUP_URL;
+
 function Hero() {
+  const handleSignInClick = () => {
+    window.location.href = DASHBOARD_SIGNUP_URL;
+  };
+
   return (
     <div className="container p-5 mb-5">
       <div className="row text-center">
@@ -15,8 +21,9 @@ function Hero() {
           bonds, and more.
         </p>
 
-        {/*Added hero-btn class here */}
-        <button className="btn fs-5 mb-5 hero-btn">Sign up for free</button>
+        <button onClick={handleSignInClick} className="btn fs-5 mb-5 hero-btn">
+          Sign up for free
+        </button>
       </div>
     </div>
   );

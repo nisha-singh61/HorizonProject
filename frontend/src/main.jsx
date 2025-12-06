@@ -12,6 +12,7 @@ import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Signup from './landing_page/signup/Signup';
 
 
 
@@ -25,6 +26,7 @@ root.render(
     <Route path='/product' element={<ProductPage />} />
     <Route path='/pricing' element={<PricingPage />} />
     <Route path='/support' element={<SupportPage />} />
+    <Route path='/signup' element={<Signup />} />
   </Routes>
   <Footer />
   </BrowserRouter>
