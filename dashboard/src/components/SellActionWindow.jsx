@@ -4,6 +4,8 @@ import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const SellActionWindow = ({ uid }) => {
 const [stockQuantity, setStockQuantity] = useState(1);
 const [stockPrice, setStockPrice] = useState(0.0);
@@ -15,7 +17,7 @@ const { closeSellWindow } = useContext(GeneralContext);
 useEffect(() => {
 const fetchAvailableQty = async () => {
 try {
-const response = await axios.get(`http://localhost:3002/holdings/${uid}`, 
+const response = await axios.get(`${API_BASE_URL}/holdings/${uid}`, 
 { withCredentials: true } 
 );
 
@@ -48,7 +50,7 @@ return;
 
 setIsLoading(true);
 try {
-await axios.post("http://localhost:3002/newOrder", {
+await axios.post(`${API_BASE_URL}/newOrder`, {
 name: uid,
 qty: stockQuantity,
 price: stockPrice,

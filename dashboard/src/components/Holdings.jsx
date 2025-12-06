@@ -19,7 +19,7 @@ const Holdings = () => {
         } catch (error) {
             console.error("Error loading holdings:", error);
         }
-    }, [API_BASE_URL]); // Dependency on API_BASE_URL (though it's constant)
+    }, []); // Dependency on API_BASE_URL (though it's constant)
 
     useEffect(() => {
         loadHoldings();

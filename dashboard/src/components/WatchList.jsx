@@ -12,9 +12,10 @@ KeyboardArrowUp,
 MoreHoriz,
 } from "@mui/icons-material";
 
-// **REMOVED:** import { watchlist } from "../data/data"; // No longer using static data
+// **REMOVED:** import { watchlist } from "../data/data"; 
 import { DoughnutChart } from "./DoughnoutChart";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const WatchList = () => {
     // NEW STATE for fetching user-specific watchlist
@@ -27,17 +28,14 @@ const WatchList = () => {
             setIsLoading(true);
             try {
                 // Fetch the user's specific watchlist using the protected route
-                // Must use withCredentials: true to send the auth cookie (token)
-                const response = await axios.get("http://localhost:3002/myWatchlist", { 
+                const response = await axios.get(`${API_BASE_URL}/myWatchlist`, { 
                     withCredentials: true 
                 });
                 
                 // Assuming the backend returns an array of stock objects 
-                // (e.g., [{ name: 'INFY', price: 1500, isDown: true, percent: '0.5%', ...}, {...}])
                 setUserWatchlist(response.data); 
             } catch (error) {
                 console.error("Error fetching watchlist:", error);
-                // Handle errors gracefully (e.g., log out user on 401, etc.)
                 setUserWatchlist([]); 
             } finally {
                 setIsLoading(false);
@@ -45,7 +43,7 @@ const WatchList = () => {
         };
 
         fetchWatchlist();
-    }, []); 
+    }, []); // Dependency array is empty to run only on mount
 
     //Data and labels are now derived from the fetched state
     const labels = userWatchlist.map((stock) => stock["name"]); 
@@ -85,112 +83,116 @@ const WatchList = () => {
         );
     }
     
-return (
-<div className="watchlist-container">
-<div className="search-container">
-<input
-type="text"
-name="search"
-id="search"
-placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
-className="search"
-/>
-<span className="counts"> {userWatchlist.length} / 50</span> {/* UPDATED */}
-</div>
+    return (
+        <div className="watchlist-container">
+            <div className="search-container">
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
+                    className="search"
+                />
+                <span className="counts"> {userWatchlist.length} / 50</span> 
+            </div>
 
-<ul className="list">
-{userWatchlist.map((stock, index) => { {/* UPDATED */}
-return <WatchListItem stock={stock} key={index} />;
-})}
-</ul>
+            <ul className="list">
+                {userWatchlist.map((stock) => { 
+                    // Use a stable key (e.g., stock name) instead of index
+                    return <WatchListItem stock={stock} key={stock.name} />; 
+                })}
+            </ul>
 
-<DoughnutChart data={data} />
-</div>
-);
+            <DoughnutChart data={data} />
+        </div>
+    );
 };
 
 export default WatchList;
 
 const WatchListItem = ({ stock }) => {
-const [showWatchlistActions, setShowWatchlistActions] = useState(false);
+    const [showWatchlistActions, setShowWatchlistActions] = useState(false);
 
-const handleMouseEnter = (e) => {
-setShowWatchlistActions(true);
-};
+    const handleMouseEnter = () => {
+        setShowWatchlistActions(true);
+    };
 
-const handleMouseLeave = (e) => {
-setShowWatchlistActions(false);
-};
+    const handleMouseLeave = () => {
+        setShowWatchlistActions(false);
+    };
 
-return (
-<li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-<div className="item">
-<p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
-<div className="itemInfo">
-<span className="percent">{stock.percent}</span>
-{stock.isDown ? (
-<KeyboardArrowDown className="down" />
-) : (
-<KeyboardArrowUp className="down" />
-)}
-<span className="price">{stock.price}</span>
-</div>
-</div>
-{showWatchlistActions && <WatchListActions uid={stock.name} />}
-</li>
-);
+    return (
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div className="item">
+                {/* Note: Ensure your backend returns the boolean 'isDown' */}
+                <p className={stock.isDown ? "down" : "up"}>{stock.name}</p> 
+                <div className="itemInfo">
+                    <span className="percent">{stock.percent}</span>
+                    {stock.isDown ? (
+                        <KeyboardArrowDown className="down" />
+                    ) : (
+                        // ArrowUp should likely use the "up" class for styling
+                        <KeyboardArrowUp className="up" /> 
+                    )}
+                    <span className="price">{stock.price}</span>
+                </div>
+            </div>
+            {showWatchlistActions && <WatchListActions uid={stock.name} />}
+        </li>
+    );
 };
 
 const WatchListActions = ({ uid }) => {
-const generalContext = useContext(GeneralContext);
+    // GeneralContext is correctly accessed here.
+    const generalContext = useContext(GeneralContext); 
 
-const handleBuyClick = () => {
-generalContext.openBuyWindow(uid);
-};
+    const handleBuyClick = () => {
+        generalContext.openBuyWindow(uid);
+    };
 
-const handleSellClick = () => {
-generalContext.openSellWindow(uid);
-};
+    const handleSellClick = () => {
+        generalContext.openSellWindow(uid);
+    };
 
-return (
-<span className="actions">
-<span>
-<Tooltip
-title="Buy (B)"
-placement="top"
-arrow
-TransitionComponent={Grow}
-onClick={handleBuyClick}
->
-<button className="buy">Buy</button>
-</Tooltip>
+    return (
+        <span className="actions">
+            <span>
+                <Tooltip
+                    title="Buy (B)"
+                    placement="top"
+                    arrow
+                    slots={{ transition: Grow }}
+                    onClick={handleBuyClick}
+                >
+                    <button className="buy">Buy</button>
+                </Tooltip>
 
-<Tooltip
-title="Sell (S)"
-placement="top"
-arrow
-TransitionComponent={Grow}
-onClick={handleSellClick}
->
-<button className="sell">Sell</button>
-</Tooltip>
+                <Tooltip
+                    title="Sell (S)"
+                    placement="top"
+                    arrow
+                    slots={{ transition: Grow }}
+                    onClick={handleSellClick}
+                >
+                    <button className="sell">Sell</button>
+                </Tooltip>
 
-<Tooltip
-title="Analytics (A)"
-placement="top"
-arrow
-TransitionComponent={Grow}
->
-<button className="action">
-<BarChartOutlined className="icon" />
-</button>
-</Tooltip>
-<Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
-<button className="action">
-<MoreHoriz className="icon" />
-</button>
-</Tooltip>
-</span>
-</span>
- );
+                <Tooltip
+                    title="Analytics (A)"
+                    placement="top"
+                    arrow
+                    slots={{ transition: Grow }}
+                >
+                    <button className="action">
+                        <BarChartOutlined className="icon" />
+                    </button>
+                </Tooltip>
+                <Tooltip title="More" placement="top" arrow slots={{ transition: Grow }}>
+                    <button className="action">
+                        <MoreHoriz className="icon" />
+                    </button>
+                </Tooltip>
+            </span>
+        </span>
+    );
 };
