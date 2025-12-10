@@ -51,11 +51,12 @@ return;
 setIsLoading(true);
 try {
 await axios.post(`${API_BASE_URL}/newOrder`, {
-name: uid,
-qty: stockQuantity,
-price: stockPrice,
-mode: "SELL",
-}, 
+    name: uid,
+    qty: stockQuantity,
+    price: stockPrice,
+    mode: "SELL",
+    product: "CNC",
+},
 { withCredentials: true } 
 );
 

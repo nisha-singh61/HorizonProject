@@ -18,15 +18,15 @@ price: {
 type: Number,
 required: true,
 },
-net: { // MUST be required for the fix in server.js to work
+net: {
 type: String,
 required: true, 
 },
-day: { // MUST be required for the fix in server.js to work
+day: {
 type: String,
 required: true,
 },
-userId: { // CRITICAL: For multi-user isolation
+userId: { //For multi-user isolation
 type: Schema.Types.ObjectId,
 ref: 'User',
 required: true,

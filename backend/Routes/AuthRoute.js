@@ -1,5 +1,3 @@
-// authRoute.js
-
 const { Signup, Login } = require("../Controllers/AuthController");
 const router = require("express").Router();
 
@@ -19,7 +17,7 @@ path: "/",
 sameSite: "Lax",
 });
 
-// ADDED: Clear the client-readable marker cookie
+//Clear the client-readable marker cookie
 res.cookie("isLoggedIn", "", {
 httpOnly: false,
 maxAge: 0,

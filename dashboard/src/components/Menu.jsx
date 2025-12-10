@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import './Menu.css'; 
 
-// Re-added the props needed for the username and logout functionality
 const Menu = ({ user, onLogout }) => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-    // Optionally close the dropdown when a menu item is clicked
     setIsProfileDropdownOpen(false); 
   };
 
@@ -22,7 +20,6 @@ const Menu = ({ user, onLogout }) => {
 
   return (
     <div className="menu-container">
-      {/* Assuming /logo.png is the red arrow/kite logo seen in the screenshot */}
       <img src="/logo.png" style={{ width: "50px" }} alt="logo" />
       <div className="menus">
         <ul>
@@ -62,7 +59,7 @@ const Menu = ({ user, onLogout }) => {
               </p>
             </Link>
           </li>
-          {/* Positions (Expanded Component) */}
+          {/* Positions */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -74,7 +71,7 @@ const Menu = ({ user, onLogout }) => {
               </p>
             </Link>
           </li>
-          {/* Funds (Expanded Component) */}
+          {/* Funds */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
@@ -86,12 +83,11 @@ const Menu = ({ user, onLogout }) => {
               </p>
             </Link>
           </li>
-          {/* Apps (Expanded Component) */}
+          {/* Apps */}
           <li>
             <Link
               style={{ textDecoration: "none" }}
               to="/apps"
-              // Note: Changed index to 5 to keep the sequence clean
               onClick={() => handleMenuClick(5)} 
             >
               <p className={selectedMenu === 5 ? activeMenuClass : menuClass}>

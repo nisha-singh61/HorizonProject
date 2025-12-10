@@ -14,11 +14,12 @@ const { closeBuyWindow } = useContext(GeneralContext);
 const handleBuyClick = async () => {
 try {
 await axios.post(`${API_BASE_URL}/newOrder`, {
-name: uid,
-qty: stockQuantity,
-price: stockPrice,
-mode: "BUY",
-}, 
+    name: uid,
+    qty: stockQuantity,
+    price: stockPrice,
+    mode: "BUY",
+    product: "CNC",
+},
 { withCredentials: true }); 
 
 alert("Buy order placed!");

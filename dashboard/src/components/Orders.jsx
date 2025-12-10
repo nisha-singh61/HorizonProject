@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react"; // ⬅️ ADDED useCallback
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import "./Orders.css";
 
@@ -21,7 +21,7 @@ const Orders = () => {
 
   useEffect(() => {
     fetchOrders();
-  }, [fetchOrders]); // Now safely lists the stable fetchOrders function
+  }, [fetchOrders]);
 
   if (orders.length === 0) {
     return (

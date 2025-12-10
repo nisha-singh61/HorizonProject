@@ -19,7 +19,7 @@ mode: {
 type: String,
 required: true,
 },
-userId: { // CRITICAL: For multi-user isolation
+userId: { //For multi-user isolation
 type: Schema.Types.ObjectId,
 ref: 'User',
 required: true,

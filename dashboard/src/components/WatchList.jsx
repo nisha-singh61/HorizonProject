@@ -1,4 +1,6 @@
-import React, { useState, useContext, useEffect } from "react"; // Added useEffect
+// /src/components/WatchList.jsx
+
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 import GeneralContext from "./GeneralContext";
@@ -6,20 +8,21 @@ import GeneralContext from "./GeneralContext";
 import { Tooltip, Grow } from "@mui/material";
 
 import {
-BarChartOutlined,
-KeyboardArrowDown,
-KeyboardArrowUp,
-MoreHoriz,
+    BarChartOutlined,
+    KeyboardArrowDown,
+    KeyboardArrowUp,
+    MoreHoriz,
 } from "@mui/icons-material";
 
-// **REMOVED:** import { watchlist } from "../data/data"; 
+// Local data imported for initial state or fallback
+import defaultWatchlist from "../data/defaultWatchlist"; 
 import { DoughnutChart } from "./DoughnoutChart";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const WatchList = () => {
-    // NEW STATE for fetching user-specific watchlist
-    const [userWatchlist, setUserWatchlist] = useState([]);
+    // Initialize state with an empty array.
+    const [userWatchlist, setUserWatchlist] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
 
     // useEffect to fetch the user's watchlist on component load
@@ -27,33 +30,48 @@ const WatchList = () => {
         const fetchWatchlist = async () => {
             setIsLoading(true);
             try {
-                // Fetch the user's specific watchlist using the protected route
                 const response = await axios.get(`${API_BASE_URL}/myWatchlist`, { 
                     withCredentials: true 
                 });
                 
-                // Assuming the backend returns an array of stock objects 
-                setUserWatchlist(response.data); 
+                // CRITICAL DEFENSIVE CHECK: Handle different API response formats
+                // Prioritize data.data, then response.data, otherwise empty array
+                const fetchedData = 
+                    (response.data && Array.isArray(response.data.data)) 
+                        ? response.data.data 
+                        : response.data;
+                
+                // Set state only if it is a confirmed array, otherwise use local fallback
+                // NOTE: If the API returns an empty array, it will still use the empty array.
+                setUserWatchlist(Array.isArray(fetchedData) ? fetchedData : defaultWatchlist); 
+                
             } catch (error) {
                 console.error("Error fetching watchlist:", error);
-                setUserWatchlist([]); 
+                // On error, use the local defaultWatchlist as a fallback
+                setUserWatchlist(defaultWatchlist); 
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchWatchlist();
-    }, []); // Dependency array is empty to run only on mount
+    }, []); 
 
-    //Data and labels are now derived from the fetched state
-    const labels = userWatchlist.map((stock) => stock["name"]); 
+    // DEFENSIVE DATA DERIVATION: Ensure userWatchlist is an array before calling map
+    const isWatchlistArray = Array.isArray(userWatchlist);
+
+    const labels = isWatchlistArray 
+        ? userWatchlist.map((stock) => stock["name"]) 
+        : []; 
 
     const data = {
         labels,
         datasets: [
             {
                 label: "Price",
-                data: userWatchlist.map((stock) => stock.price),
+                data: isWatchlistArray 
+                    ? userWatchlist.map((stock) => stock.price) 
+                    : [],
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.5)",
                     "rgba(54, 162, 235, 0.5)",
@@ -83,6 +101,15 @@ const WatchList = () => {
         );
     }
     
+    // Show empty message only if data is loaded but is an empty array
+    if (!isLoading && userWatchlist.length === 0) {
+        return (
+            <div className="watchlist-container">
+                <p>Your watchlist is empty. Try adding some stocks!</p>
+            </div>
+        );
+    }
+
     return (
         <div className="watchlist-container">
             <div className="search-container">
@@ -98,7 +125,6 @@ const WatchList = () => {
 
             <ul className="list">
                 {userWatchlist.map((stock) => { 
-                    // Use a stable key (e.g., stock name) instead of index
                     return <WatchListItem stock={stock} key={stock.name} />; 
                 })}
             </ul>
@@ -124,14 +150,12 @@ const WatchListItem = ({ stock }) => {
     return (
         <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <div className="item">
-                {/* Note: Ensure your backend returns the boolean 'isDown' */}
                 <p className={stock.isDown ? "down" : "up"}>{stock.name}</p> 
                 <div className="itemInfo">
                     <span className="percent">{stock.percent}</span>
                     {stock.isDown ? (
                         <KeyboardArrowDown className="down" />
                     ) : (
-                        // ArrowUp should likely use the "up" class for styling
                         <KeyboardArrowUp className="up" /> 
                     )}
                     <span className="price">{stock.price}</span>
@@ -143,7 +167,6 @@ const WatchListItem = ({ stock }) => {
 };
 
 const WatchListActions = ({ uid }) => {
-    // GeneralContext is correctly accessed here.
     const generalContext = useContext(GeneralContext); 
 
     const handleBuyClick = () => {

@@ -45,8 +45,8 @@ const Home = () => {
                 } catch (error) {
                     if (isMounted) { // Check before state/navigation updates
                         // Network error, assume unauthenticated
-                        removeCookie("token", { path: "/" }); // Added path
-                        removeCookie("isLoggedIn", { path: "/" }); // Added path
+                        removeCookie("token", { path: "/" });
+                        removeCookie("isLoggedIn", { path: "/" });
                         navigate("/login");
                     }
                 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { options } from "./chartUtils";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -18,19 +19,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Holdings",
-    },
-  },
-};
 
 export function VerticalGraph({ data }) {
   return <Bar options={options} data={data} />;

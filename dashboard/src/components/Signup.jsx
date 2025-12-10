@@ -48,7 +48,7 @@ const Signup = () => {
             if (success) {
                 handleSuccess(message);
                 
-                // ⬅️ CRITICAL CORRECTION: Use hard redirect (full page reload) 
+                // Use hard redirect (full page reload) 
                 // to force the browser to commit the new authentication cookie 
                 // before requesting the protected home page.
                 window.location.href = "/";
@@ -58,7 +58,7 @@ const Signup = () => {
             }
         } catch (error) {
             console.log(error);
-            // Added error handling for network/server failures
+            //error handling for network/server failures
             handleError(error.response?.data?.message || "An error occurred during signup."); 
         }
         
