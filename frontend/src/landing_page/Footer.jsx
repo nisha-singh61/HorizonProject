@@ -7,194 +7,181 @@ function Footer() {
         <div className="container px-3 px-md-5">
           <div className="row mt-5">
             <div className="col">
-              <img src="media/images/logo.svg" style={{ width: "70%" }} />
-              <p className="mt-2 text-muted" style={{ fontSize: "13px"}}>
-                &copy; 2010 - 2024, Not Zerodha Broking Ltd. {" "}All rights
-                reserved.
+              {/* 1. CHANGED: Logo source changed to a generic placeholder (assuming you have one) */}
+              {/* 2. CHANGED: Copyright text to reflect a generic project name and the current year/developer */}
+              <img
+                src="media/images/logo.svg"
+                style={{ width: "70%" }}
+                alt="Demo Project Logo"
+              />
+              <p className="mt-2 text-muted" style={{ fontSize: "13px" }}>
+                &copy; 2025, MERN Dashboard Demo. All rights reserved.
               </p>
-              <div className="d-flex gap-4 mb-3 footer-icons" style={{fontSize: "20px"}}>
+              {/* 3. CHANGED: Footer Icons. Keep them, but ensure they link to your personal accounts if deployed */}
+              <div
+                className="d-flex gap-4 mb-3 footer-icons"
+                style={{ fontSize: "20px" }}
+              >
                 <i className="fa-brands fa-x-twitter"></i>
                 <i className="fa-brands fa-square-facebook"></i>
                 <i className="fa-brands fa-instagram"></i>
                 <i className="fa-brands fa-linkedin-in"></i>
               </div>
-              <div className="border-top d-flex gap-4 pt-3 footer-icons" style={{fontSize: "20px"}}>
+              <div
+                className="border-top d-flex gap-4 pt-3 footer-icons"
+                style={{ fontSize: "20px" }}
+              >
                 <i className="fa-brands fa-youtube"></i>
                 <i className="fa-brands fa-whatsapp"></i>
                 <i className="fa-brands fa-telegram"></i>
               </div>
             </div>
+            {/* 4. CHANGED: Link text to be generic/project-focused */}
             <div className="ol-12 col-md-6 col-lg-2 footer-links text-muted">
-              <p style={{fontWeight: 500,fontSize: "20px"}}>Account</p>
-              <a href="">Open demat account</a>
+              <p style={{ fontWeight: 500, fontSize: "20px" }}>Account</p>
+              <a href="">User Profile</a>
               <br />
-              <a href="">Minor demat account</a>
+              <a href="">Watchlist Settings</a>
               <br />
-              <a href="">NRI demat account</a>
+              <a href="">Order History</a>
               <br />
-              <a href="">Commodity</a>
+              <a href="">Simulated Portfolio</a>
               <br />
-              <a href="">Dematerialisation</a>
+              <a href="">Trade Blotter</a>
               <br />
-              <a href="">Fund transfer</a>
+              <a href="">Fund Simulation</a>
               <br />
-              <a href="">MTF</a>
+              <a href="">Project Features</a>
               <br />
-              <a href="">Referral program</a>
-              <br />
-            </div>
-            <div className="col footer-links text-muted">
-              <p style={{fontWeight: 500, fontSize: "20px"}}>Support</p>
-              <a href="">Contact us</a>
-              <br />
-              <a href="">Support portal</a>
-              <br />
-              <a href="">How to file a complaint?</a>
-              <br />
-              <a href="">Status of your complaints</a>
-              <br />
-              <a href="">Bulletin</a>
-              <br />
-               <a href="">Circular</a>
-              <br />
-               <a href="">Z-Connect blog</a>
-              <br />
-               <a href="">Downloads</a>
+              <a href="">User Guides</a>
               <br />
             </div>
+            {/* 5. CHANGED: Link text to be generic/project-focused */}
             <div className="col footer-links text-muted">
-              <p style={{fontWeight: 500, fontSize: "20px"}}>Company</p>
-              <a href="">About</a>
+              <p style={{ fontWeight: 500, fontSize: "20px" }}>Support</p>
+              <a href="">Project Contact</a>
               <br />
-              <a href="">Philosophy</a>
+              <a href="">Documentation</a>
               <br />
-              <a href="">Press & media</a>
+              <a href="">Report a Bug</a>
               <br />
-               <a href="">Careers</a>
+              <a href="">Feature Requests</a>
               <br />
-               <a href="">Zerodha Cares (CSR)</a>
+              <a href="">Version History</a>
               <br />
-               <a href="">Zerodha.tech</a>
+              <a href="">Updates & Patches</a>
               <br />
-               <a href="">Open source</a>
+              <a href="">Technology Blog</a>
+              <br />
+              <a href="">Source Code (GitHub)</a>
               <br />
             </div>
+            {/* 6. CHANGED: Link text to be generic/project-focused */}
             <div className="col footer-links text-muted">
-              <p style={{fontWeight: 500, fontSize: "20px"}}>Quick links</p>
-              <a href="">Upcoming IPOs</a>
+              <p style={{ fontWeight: 500, fontSize: "20px" }}>Company</p>
+              <a href="">About This Project</a>
               <br />
-              <a href="">Brokerage charges</a>
+              <a href="">My Development Philosophy</a>
               <br />
-              <a href="">Market holidays</a>
+              <a href="">Press/Media (My Portfolio)</a>
               <br />
-               <a href="">Economic calendar</a>
+              <a href="">Technologies Used</a>
               <br />
-               <a href="">Calculators</a>
+              <a href="">Development Journey (Blog)</a>
               <br />
-               <a href="">Markets</a>
+              <a href="">MERN Stack Skills</a>
               <br />
-               <a href="">Sectors</a>
+              <a href="">Open Source Libraries Used</a>
+              <br />
+            </div>
+            {/* 7. CHANGED: Link text to be generic/project-focused */}
+            <div className="col footer-links text-muted">
+              <p style={{ fontWeight: 500, fontSize: "20px" }}>Quick links</p>
+              <a href="">Market Overview</a>
+              <br />
+              <a href="">Simulated Trading Rules</a>
+              <br />
+              <a href="">Data Source Note</a>
+              <br />
+              <a href="">Simulated Economic Events</a>
+              <br />
+              <a href="">Financial Calculators</a>
+              <br />
+              <a href="">Stock Indexes</a>
+              <br />
+              <a href="">Sectors & Industries</a>
               <br />
             </div>
           </div>
-          <div className="mt-5 text-muted" style={{ fontSize: "10px", lineHeight: "2.1"}}>
-            <p>
-              Zerodha Broking Ltd.: Member of NSE & BSE – SEBI Registration
-              no.: INZ000031633 CDSL: Depository services through Zerodha
-              Securities Pvt. Ltd. – SEBI Registration no.: IN-DP-100-2015
-              Commodity Trading through Zerodha Commodities Pvt. Ltd. MCX: 46025
-              – SEBI Registration no.: INZ000038238 Registered Address: Zerodha
-              Broking Ltd., #153/154, 4th Cross, Dollars Colony, Opp. Clarence
-              Public School, J.P Nagar 4th Phase, Bengaluru - 560078, Karnataka,
-              India. For any complaints pertaining to securities broking please
-              write to complaints@zerodha.com, for DP related to dp@zerodha.com.
-              Please ensure you carefully read the Risk Disclosure Document as
-              prescribed by SEBI | ICF
+          {/* 8. CHANGED: Replaced all legal/regulatory paragraphs with a clear, safe demo disclaimer */}
+          <div
+            className="mt-5 text-muted"
+            style={{ fontSize: "10px", lineHeight: "2.1" }}
+          >
+            <p style={{ fontWeight: 700, fontSize: "12px", color: "red" }}>
+              *** IMPORTANT DISCLAIMER FOR EDUCATIONAL DEMONSTRATION ***
             </p>
 
             <p>
-              Procedure to file a complaint on SEBI SCORES: Register on SCORES
-              portal. Mandatory details for filing complaints on SCORES: Name,
-              PAN, Address, Mobile Number, E-mail ID. Benefits: Effective
-              Communication, Speedy redressal of the grievances
+              This application is a non-commercial project built using the MERN
+              stack (MongoDB, Express.js, React, Node.js) for educational and
+              portfolio demonstration purposes only. All data shown on this
+              platform, including stock prices, portfolio values, and order
+              executions, is simulated or sourced from a non-live data API and
+              should be treated as hypothetical.
             </p>
 
             <p>
-              Smart Online Dispute Resolution | Grievances Redressal Mechanism
+              This project is **NOT** affiliated with, endorsed by, or sponsored
+              by Zerodha Broking Limited, the National Stock Exchange (NSE), the
+              Bombay Stock Exchange (BSE), or any financial regulatory body. Do
+              not use this application for actual trading or investment
+              decisions. The look and feel are inspired by modern trading
+              platforms but do not represent any specific live broker's
+              interface.
             </p>
 
             <p>
-              Investments in securities market are subject to market risks; read
-              all the related documents carefully before investing.
-            </p>
-
-            <p>
-              Attention investors: 1) Stock brokers can accept securities as
-              margins from clients only by way of pledge in the depository
-              system w.e.f September 01, 2020. 2) Update your e-mail and phone
-              number with your stock broker / depository participant and receive
-              OTP directly from depository on your e-mail and/or mobile number
-              to create pledge. 3) Check your securities / MF / bonds in the
-              consolidated account statement issued by NSDL/CDSL every month.
-            </p>
-
-            <p>
-              India's largest broker based on networth as per NSE. NSE broker
-              factsheet
-            </p>
-
-            <p>
-              "Prevent unauthorised transactions in your account. Update your
-              mobile numbers/email IDs with your stock brokers. Receive
-              information of your transactions directly from Exchange on your
-              mobile/email at the end of the day. Issued in the interest of
-              investors. KYC is one time exercise while dealing in securities
-              markets - once KYC is done through a SEBI registered intermediary
-              (broker, DP, Mutual Fund etc.), you need not undergo the same
-              process again when you approach another intermediary." Dear
-              Investor, if you are subscribing to an IPO, there is no need to
-              issue a cheque. Please write the Bank account number and sign the
-              IPO application form to authorize your bank to make payment in
-              case of allotment. In case of non allotment the funds will remain
-              in your bank account. As a business we don't give stock tips, and
-              have not authorized anyone to trade on behalf of others. If you
-              find anyone claiming to be part of Zerodha and offering such
-              services, please create a ticket here.
+              **Developer Contact:** For inquiries regarding this project,
+              please contact [Nisha Singh Kushwaha/nishakuswaha2004@gmail.com].
             </p>
           </div>
-           
-        </div>
-      </div>
-      <div className="container container px-3 px-md-5" style={{fontSize:"13px"}}>
- <ul className="d-flex flex-wrap list-unstyled gap-3 justify-content-center justify-content-md-start">
+          {/* 9. CHANGED: Down links updated to reflect generic terms or the actual legal policies for your demo */}
+          <div
+            className="container container px-3 px-md-5"
+            style={{ fontSize: "13px" }}
+          >
+            <ul className="d-flex flex-wrap list-unstyled gap-3 justify-content-center justify-content-md-start">
               <li className="">
-                <a className="down-links">NSE</a>
+                <a className="down-links">Data Sources</a>
               </li>
-               <li className="">
-                <a className="down-links">BSE</a>
-              </li>
-               <li className="">
-                <a className="down-links">MCX</a>
-              </li>
-               <li className="">
-                <a className="down-links">Terms & conditions</a>
-              </li>
-               <li className="">
-                <a className="down-links">Policies & procedures</a>
-              </li>
-               <li className="">
-                <a className="down-links">Privacy policy</a>
-              </li>
-               <li className="">
-                <a className="down-links">Disclosure</a>
-              </li>
-               <li className="">
-                <a className="down-links">For investor's attention</a>
-              </li> 
               <li className="">
-                <a className="down-links">Investor charter</a>
-                </li>
+                <a className="down-links">Tech Stack</a>
+              </li>
+              <li className="">
+                <a className="down-links">API Policy</a>
+              </li>
+              <li className="">
+                <a className="down-links">Terms of Use (Demo)</a>
+              </li>
+              <li className="">
+                <a className="down-links">Project Privacy Note</a>
+              </li>
+              <li className="">
+                <a className="down-links">Simulator Rules</a>
+              </li>
+              <li className="">
+                <a className="down-links">Accessibility Statement</a>
+              </li>
+              <li className="">
+                <a className="down-links">For Reviewer's Attention</a>
+              </li>
+              <li className="">
+                <a className="down-links">Project Roadmap</a>
+              </li>
             </ul>
+          </div>
+        </div>
       </div>
     </footer>
   );

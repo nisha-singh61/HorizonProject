@@ -10,31 +10,33 @@ function Awards() {
             src="media/images/largestBroker.svg"
             alt="Largest Broker"
             className="img-fluid awards-img"
+            width={"600px"}
           />
         </div>
 
         {/* Text column */}
         <div className="col-12 col-md-6 p-4 mt-md-5 text-center text-md-start">
-          <h1 className="awards-title">Largest stock broker in India</h1>
+          <h1 className="awards-title">Horizon: Your Foundation for Growth</h1>
           <p className="mb-4 awards-text">
-            2+ million Zerodha clients contribute to over 15% of all retail
-            order volumes in India daily by trading and investing in:
+            Axis, the flagship trading platform of Horizon, is trusted by a
+            rapidly growing community of traders and investors. We offer access
+            to a diversified range of assets including:
           </p>
 
           {/* Lists */}
           <div className="row">
             <div className="col-6 text-start">
               <ul className="awards-list">
-                <li>Futures and Options</li>
-                <li>Commodity derivatives</li>
-                <li>Currency derivatives</li>
+                <li>Long-Term Equity (Stocks & IPOs)</li>
+                <li>Goal-Based MFs (Direct Mutual Funds)</li>
+                <li>Fixed Income Assets (Bonds & G-Secs)</li>
               </ul>
             </div>
             <div className="col-6 text-start">
               <ul className="awards-list">
-                <li>Stocks & IPOs</li>
-                <li>Direct mutual funds</li>
-                <li>Bonds and Govt. Securities</li>
+                <li>Strategic Derivatives (F&O)</li>
+                <li>Global Securities (ETFs & International Exposure)</li>
+                <li>Commodity & Currency Trading</li>
               </ul>
             </div>
           </div>
@@ -42,7 +44,7 @@ function Awards() {
           {/* Press logos */}
           <div className="text-center text-md-start mt-4">
             <img
-              src="media/images/pressLogos.png"
+              src="media/images/pressLogos.svg"
               alt="Press Logos"
               className="img-fluid awards-press-img"
             />

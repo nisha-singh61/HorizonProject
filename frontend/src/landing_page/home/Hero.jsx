@@ -11,14 +11,14 @@ function Hero() {
     <div className="container p-5 mb-5">
       <div className="row text-center">
         <img
-          src="media/images/homeHero.png"
+          src="media/images/homeHero.jpg"
           alt="Hero Image"
           className="mb-5 d-block mx-auto img-fluid hero-img"
         />
-        <h1 className="mt-5 fs-3">Invest in everything</h1>
+        <h1 className="mt-5 fs-3">The Next Generation of Investing</h1>
         <p className="mb-5 fs-5">
-          Online platform to invest in stocks, derivatives, mutual funds, ETFs,
-          bonds, and more.
+          A high-speed, secure, and intuitive platform designed for modern
+          traders and investors. Access equities, bonds, F&O, and MFs effortlessly.
         </p>
 
         <button onClick={handleSignInClick} className="btn fs-5 mb-5 hero-btn">

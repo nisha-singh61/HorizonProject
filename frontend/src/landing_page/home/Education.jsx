@@ -17,13 +17,13 @@ function Education() {
         <div className="col-12 col-md-6">
           <h1 className="mb-3 fs-2">Free and open market education</h1>
           <p>
-            Varsity, the largest online stock market education book in the world
+            Invent, the largest online stock market education book in the world
             covering everything from the basics to advanced trading.
           </p>
 
           <div className='custom-links'>
             <a href="">
-              Varsity <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+              Invent <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
 
             <p className="mt-5">
