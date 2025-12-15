@@ -2,12 +2,11 @@ import React from "react";
 
 const DASHBOARD_SIGNUP_URL = import.meta.env.VITE_DASHBOARD_SIGNUP_URL;
 
-
 function Universe() {
-   const handleSignInClick = () => {
-        window.location.href = DASHBOARD_SIGNUP_URL;
-   };
-   
+  const handleSignInClick = () => {
+    window.location.href = DASHBOARD_SIGNUP_URL;
+  };
+
   return (
     <div
       className="container universe-container"
@@ -19,54 +18,53 @@ function Universe() {
       }}
     >
       <div className="row text-center">
-        <h1 className="universe-title mb-4">The Zerodha Universe</h1>
+        <h1 className="universe-title mb-4">The Horizon Universe</h1>
         <p className="universe-intro">
-          Extend your trading and investment experience even further with our
-          partner platforms
+          Extend your Axis trading and investment experience even further with
+          our partner platforms and ecosystem.
         </p>
 
         {/* Row 1 */}
         <div className="row mt-4">
           <div className="col-4 p-4">
             <img
-              src="media/images/zerodhaFundhouse.png"
+              src="media/images/horizonWealth.svg"
               className="img-fluid mb-3"
-              alt="Zerodha Fundhouse"
-              style={{ maxHeight: "60px" }}
+              alt="Horizon Wealth"
+              style={{ maxHeight: "250px" }}
             />
             <p>
-              Our asset management venture that is creating simple and
-              transparent index funds to help you save for your goals.
+              Horizon Wealth is our dedicated asset management arm, focusing on
+              building high-quality, low-cost index funds for long-term goal
+              planning.
             </p>
           </div>
           <div className="col-4 p-4">
             <img
-              src="media/images/sensibullLogo.svg"
-              alt="Sensibull"
+              src="media/images/alphaEngine.png"
+              alt="Alpha Engine"
               className="mb-3"
               style={{
-                height: "40px", // force bigger size
-                width: "auto", // keep proportions
-                display: "block",
-                margin: "0 auto", // center align
+                maxHeight: "250px",
               }}
             />
             <p>
-              Options trading platform that lets you create strategies, analyze
-              positions, and examine data points like open interest, FII/DII,
-              and more.
+              Alpha Engine: An advanced quantitative platform for building,
+              backtesting, and paper trading complex options strategies without
+              writing a single line of code.
             </p>
           </div>
           <div className="col-4 p-4">
             <img
-              src="media/images/tijori.svg"
+              src="media/images/insightsPro.png"
               className="img-fluid mb-3"
-              alt="Tijori"
-              style={{ maxHeight: "60px" }}
+              alt="Insights Pro"
+              style={{ maxHeight: "250px" }}
             />
             <p>
-              Investment research platform that offers detailed insights on
-              stocks, sectors, supply chains, and more.
+              Insight Pro provides institutional-grade research tools,
+              fundamental analysis, competitive benchmarking, and comprehensive
+              sector deep-dives for informed decisions.
             </p>
           </div>
         </div>
@@ -75,44 +73,48 @@ function Universe() {
         <div className="row mt-4">
           <div className="col-4 p-4">
             <img
-              src="media/images/streakLogo.png"
+              src="media/images/strategyFlow.png"
               className="img-fluid mb-3"
-              alt="Streak"
-              style={{ maxHeight: "60px" }}
+              alt="Strategy Flow"
+              style={{ maxHeight: "250px" }}
             />
             <p>
-              Systematic trading platform that allows you to create and backtest
-              strategies without coding.
+              **Strategy Flow:** A visual systematic trading interface allowing
+              users to automate trade execution based on simple to highly
+              complex technical indicators.
             </p>
           </div>
           <div className="col-4 p-4">
             <img
-              src="media/images/smallcaseLogo.png"
+              src="media/images/catalyst.png"
               className="img-fluid mb-3"
-              alt="Smallcase"
-              style={{ maxHeight: "60px" }}
+              alt="Catalyst Portfolios"
+              style={{ maxHeight: "250px" }}
             />
             <p>
-              Thematic investing platform that helps you invest in diversified
-              baskets of stocks on ETFs.
+              Catalyst Portfolios: Managed investment baskets and thematic
+              portfolios professionally curated to help you invest in market
+              trends with a single click.
             </p>
           </div>
           <div className="col-4 p-4">
             <img
-              src="media/images/dittoLogo.png"
+              src="media/images/protectMe.png"
               className="img-fluid mb-3"
-              alt="Ditto"
-              style={{ maxHeight: "60px" }}
+              alt="ProtectMe"
+              style={{ maxHeight: "250px" }}
             />
             <p>
-              Personalized advice on life and health insurance. No spam and no
-              mis-selling.
+              ProtectMe: Your personal advisory platform for objective,
+              personalized guidance on selecting the right life, health, and
+              term insurance policies.
             </p>
           </div>
         </div>
-        <button 
-         onClick={handleSignInClick} 
-        className="universe-btn p-2 btn fs-5 mb-5">
+        <button
+          onClick={handleSignInClick}
+          className="universe-btn p-2 btn fs-5 mb-5"
+        >
           Sign up for free
         </button>
       </div>

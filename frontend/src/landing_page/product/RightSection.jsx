@@ -9,7 +9,7 @@ function RightSection({ imageURL, productName, productDesription, learnMore }) {
           <p>{productDesription}</p>
           <div className="custom-links">
             <a href={learnMore || "#"}>
-              Learn More <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+              View Documentation <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
         </div>

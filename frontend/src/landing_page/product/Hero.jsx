@@ -7,15 +7,15 @@ function Hero() {
       style={{ maxWidth: "1140px" }}
     >
       <div className="text-center mt-5 p-5">
-        <h1 className="hero-title">Zerodha Products</h1>
+        <h1 className="hero-title">Horizon Products</h1>
         <h3 className="mt-3 hero-subtitle">
-          Sleek, modern and intuitive trading platforms
+          Experience Axis: The powerful, unified trading terminal designed for every investor.
         </h3>
         <div className="custom-links">
           <p className="mb-5 fs-6 p-4">
-            Check out our{" "}
+           Explore the full suite of our{" "}
             <a href="">
-              investment offerings{" "}
+              technology and features{" "}
               <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
           </p>

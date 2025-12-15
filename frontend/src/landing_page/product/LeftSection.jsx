@@ -20,10 +20,10 @@ function LeftSection({
           <p>{productDesription}</p>
           <div className="custom-links">
             <a href={tryDemo || "#"}>
-              Try Demo <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+              Start Trading <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
             <a href={learnMore || "#"}>
-              Learn More <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+              View Documentation <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
             </a>
           </div>
           <div className="mt-3">
