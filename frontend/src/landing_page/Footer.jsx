@@ -7,8 +7,6 @@ function Footer() {
         <div className="container px-3 px-md-5">
           <div className="row mt-5">
             <div className="col">
-              {/* 1. CHANGED: Logo source changed to a generic placeholder (assuming you have one) */}
-              {/* 2. CHANGED: Copyright text to reflect a generic project name and the current year/developer */}
               <img
                 src="media/images/logo.svg"
                 style={{ width: "70%" }}
@@ -17,7 +15,6 @@ function Footer() {
               <p className="mt-2 text-muted" style={{ fontSize: "13px" }}>
                 &copy; 2025, MERN Dashboard Demo. All rights reserved.
               </p>
-              {/* 3. CHANGED: Footer Icons. Keep them, but ensure they link to your personal accounts if deployed */}
               <div
                 className="d-flex gap-4 mb-3 footer-icons"
                 style={{ fontSize: "20px" }}
@@ -36,7 +33,6 @@ function Footer() {
                 <i className="fa-brands fa-telegram"></i>
               </div>
             </div>
-            {/* 4. CHANGED: Link text to be generic/project-focused */}
             <div className="ol-12 col-md-6 col-lg-2 footer-links text-muted">
               <p style={{ fontWeight: 500, fontSize: "20px" }}>Account</p>
               <a href="">User Profile</a>
@@ -76,7 +72,6 @@ function Footer() {
               <a href="">Source Code (GitHub)</a>
               <br />
             </div>
-            {/* 6. CHANGED: Link text to be generic/project-focused */}
             <div className="col footer-links text-muted">
               <p style={{ fontWeight: 500, fontSize: "20px" }}>Company</p>
               <a href="">About This Project</a>
@@ -94,7 +89,6 @@ function Footer() {
               <a href="">Open Source Libraries Used</a>
               <br />
             </div>
-            {/* 7. CHANGED: Link text to be generic/project-focused */}
             <div className="col footer-links text-muted">
               <p style={{ fontWeight: 500, fontSize: "20px" }}>Quick links</p>
               <a href="">Market Overview</a>
@@ -113,7 +107,6 @@ function Footer() {
               <br />
             </div>
           </div>
-          {/* 8. CHANGED: Replaced all legal/regulatory paragraphs with a clear, safe demo disclaimer */}
           <div
             className="mt-5 text-muted"
             style={{ fontSize: "10px", lineHeight: "2.1" }}
@@ -146,7 +139,6 @@ function Footer() {
               please contact [Nisha Singh Kushwaha/nishakuswaha2004@gmail.com].
             </p>
           </div>
-          {/* 9. CHANGED: Down links updated to reflect generic terms or the actual legal policies for your demo */}
           <div
             className="container container px-3 px-md-5"
             style={{ fontSize: "13px" }}

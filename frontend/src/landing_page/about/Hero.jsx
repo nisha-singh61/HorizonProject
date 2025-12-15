@@ -6,9 +6,9 @@ function About() {
       {/* Top Heading */}
       <div className="row p-5 mt-5 mb-5">
         <h1 className="fs-4 text-center text-muted">
-          We pioneered the discount broking model in India.
+          We are redefining the boundaries of digital finance.
           <br />
-          Now, we are breaking ground with our technology.
+          Horizon is charting the course for the next generation of investors.
         </h1>
       </div>
 
@@ -16,50 +16,56 @@ function About() {
       <div className="row p-5 mt-5 border-top about-content">
         <div className="col-md-6 pe-4">
           <p>
-            We kick-started operations on the 15th of August, 2010 with the goal
-            of breaking all barriers that traders and investors face in India in
-            terms of cost, support, and technology. We named the company
-            Zerodha, a combination of Zero and "Rodha", the Sanskrit word for
-            barrier.
+            We launched our platform on the 6th of October, 2024, with a
+            singular mission: to democratize access to global and local
+            financial markets. We aimed to eliminate complexities, high fees,
+            and slow execution that traditionally hinder modern investors. We
+            named our company Horizon, symbolizing the vast opportunities we
+            open up for our clients.
           </p>
           <p>
-            Today, our disruptive pricing models and in-house technology have
-            made us the biggest stock broker in India.
+            Today, our cutting-edge, low-latency technology and transparent
+            pricing have quickly established us as a leading digital investment
+            platform in the region.
           </p>
           <p>
-            Over 1.6+ crore clients place billions of orders every year through
-            our powerful ecosystem of investment platforms, contributing over
-            15% of all Indian retail trading volumes.
+            Millions of users rely on our flagship trading terminal, Axis,
+            to execute sophisticated strategies and manage their wealth. Our
+            platform processes billions in transaction volume annually, a
+            testament to the trust our community places in our systems.
           </p>
         </div>
 
         <div className="col-md-6 ps-4">
           <p>
-            In addition, we run a number of popular open online educational and
-            community initiatives to empower retail traders and investors.
+            Beyond execution, we are deeply committed to financial literacy. We
+            host several popular open educational resources and a vibrant
+            community forum to empower new and experienced investors alike.
           </p>
           <p>
             <a href="#" className="about-link">
-              Rainmatter
+              Venture Edge
             </a>
-            , our fintech fund and incubator, has invested in several fintech
-            startups with the goal of growing the Indian capital markets.
+            , our incubation arm, actively funds and supports emerging fintech
+            solutions that share our vision of creating a more inclusive and
+            efficient financial ecosystem.
           </p>
           <p>
-            And yet, we are always up to something new every day. Catch up on the
-            latest updates on our{" "}
+            Innovation is our constant. Stay updated with our latest
+            advancements on our{" "}
             <a href="#" className="about-link">
-              blog
+              Platform Blog
             </a>{" "}
-            or see what the media is{" "}
+            or explore our impact in the news by seeing what the media is{" "}
             <a href="#" className="about-link">
-              saying about us
+              reporting on us
             </a>{" "}
-            or learn more about our business and product{" "}
+            . You can also dive deeper into the core principles and product
+            design of Horizon on our{" "}
             <a href="#" className="about-link">
-              philosophies
+              Design Philosophy
             </a>
-            .
+            page.
           </p>
         </div>
       </div>

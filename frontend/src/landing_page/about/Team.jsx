@@ -13,26 +13,32 @@ function Team() {
         {/* Image Column */}
         <div className="col-md-6 col-12 p-3 text-center">
           <img
-            src="media/images/nithinKamath.jpg"
+            src="media/images/nishaSingh.svg"
             alt="Nithin Kamath"
             className="team-img"
           />
-          <h5 className="mt-4">Nithin Kamath</h5>
-          <h6 className="text-muted mt-2">Founder, CEO</h6>
+          <h5 className="mt-4">Nisha Singh</h5>
+          <h6 className="text-muted mt-2">Lead Developer / Component Architect</h6>
         </div>
 
         {/* Info Column */}
         <div className="col-md-6 col-12 p-3 team-info">
           <p>
-            Nithin bootstrapped and founded Zerodha in 2010 to overcome the
-            hurdles he faced during his decade-long stint as a trader. Today,
-            Zerodha has changed the landscape of the Indian broking industry.
+            I am the architect responsible for building and maintaining core
+            front-end components like this one, ensuring a seamless and
+            responsive user experience for Horizon's clients. My focus is on
+            robust, scalable, and modern React development, leveraging the
+            latest in design and performance optimization.
           </p>
           <p>
-            He is a member of the SEBI Secondary Market Advisory Committee
-            (SMAC) and the Market Data Advisory Committee (MDAC).
+            My day-to-day work involves collaborating with the design team,
+            writing clean, modular code, and integrating RESTful APIs to bring
+            data to life on the **Axis** platform.
           </p>
-          <p>Playing basketball is his zen.</p>
+          <p>
+            I thrive on tackling complex UI challenges and delivering highly
+            performant applications.
+          </p>
           <p>
             Connect on{" "}
             <a href="#" className="about-link">
@@ -40,11 +46,11 @@ function Team() {
             </a>{" "}
             /{" "}
             <a href="#" className="about-link">
-              TradingQnA
+              Contact
             </a>{" "}
             /{" "}
             <a href="#" className="about-link">
-              Twitter
+              GitHub
             </a>
           </p>
         </div>
