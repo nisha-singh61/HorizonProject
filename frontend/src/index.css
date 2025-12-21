@@ -366,7 +366,7 @@ footer .footer-links a:hover {
 
 .stats-img {
   width: 100%;       /* full width for mobile */
-  max-width: 500px;  /* limit max size on desktop */
+  max-width: 600px;  /* limit max size on desktop */
   height: auto;
 }
 

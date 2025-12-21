@@ -7,10 +7,10 @@ function Awards() {
         {/* Image column */}
         <div className="col-12 col-md-6 p-4 text-center">
           <img
-            src="media/images/largestBroker.svg"
+            src="media/images/largestBroker.png"
             alt="Largest Broker"
             className="img-fluid awards-img"
-            width={"600px"}
+            width={"400px"}
           />
         </div>
 

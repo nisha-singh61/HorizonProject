@@ -41,7 +41,7 @@ function Stats() {
 
         <div className="col-12 col-lg-6 p-4 text-center">
           <img
-            src="media/images/ecosystem.svg"
+            src="media/images/ecosystem.png"
             className="stats-img mb-3"
           />
           <div className="custom-links">
