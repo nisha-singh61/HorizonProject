@@ -200,23 +200,26 @@ footer .footer-links a:hover {
   }
 }
 
-/* Hero image responsiveness */
-.hero-img {
-  width: 65%;
+
+/* Home heor image */
+
+div.row .hero-img {
+  width: 100%;   
+  max-width: 900px; 
   height: auto;
 }
 
 /* Tablet */
 @media (max-width: 992px) {
-  .hero-img {
-    width: 80%;
+  div.row .hero-img {
+    max-width: 500px; 
   }
 }
 
 /* Mobile */
 @media (max-width: 576px) {
-  .hero-img {
-    width: 100%;
+  div.row .hero-img {
+    max-width: 300px; 
   }
 }
 

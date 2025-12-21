@@ -11,7 +11,7 @@ function Hero() {
     <div className="container p-5 mb-5">
       <div className="row text-center">
         <img
-          src="media/images/homeHero.png"
+          src="media/images/homeHero.webp"
           alt="Hero Image"
           className="mb-5 d-block mx-auto img-fluid hero-img"
         />
