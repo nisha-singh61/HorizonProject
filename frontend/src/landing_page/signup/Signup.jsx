@@ -8,16 +8,14 @@ const Signup = () => {
   };
 
   return (
-    <div className="signin-prompt-container min-vh-100 d-flex align-items-center justify-content-center bg-light p-3 p-md-0">
+    <div className="signin-prompt-container min-vh-100 d-flex align-items-center justify-content-center bg-white p-3 p-md-5 py-5">
       <div
-        className="container overflow-hidden" // Removed bg-white and shadow here to apply them to individual cards
+        className="container overflow-hidden my-auto"
         style={{ maxWidth: "1000px" }}
       >
-        {/* Changed g-0 to gap-4 to create the space between cards */}
         <div className="row gap-lg-4 justify-content-center">
           
-          {/* Left Panel: Dark Section */}
-          <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-between p-5 bg-dark text-white position-relative shadow-lg rounded-5">
+          <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-between p-5 bg-dark text-white position-relative rounded-5">
             <div>
               <div className="axis-logo-container mb-5">
                 <img
@@ -40,7 +38,7 @@ const Signup = () => {
 
             <div className="row g-3">
               <div className="col-6">
-                <div className="bg-white text-dark p-4 rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center">
+                <div className="bg-white text-dark p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
                   <div className="d-flex align-items-center mb-2">
                     <i className="bi bi-cpu-fill text-primary me-2"></i>
                     <span className="fw-bold small">99.9% Uptime</span>
@@ -49,7 +47,7 @@ const Signup = () => {
                 </div>
               </div>
               <div className="col-6">
-                <div className="bg-white text-dark p-4 rounded-4 shadow-sm h-100 d-flex flex-column justify-content-center">
+                <div className="bg-white text-dark p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
                   <div className="d-flex align-items-center mb-2">
                     <i className="bi bi-shield-lock-fill text-primary me-2"></i>
                     <span className="fw-bold small">Direct Access</span>
@@ -71,8 +69,7 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* Right Panel: Form Section */}
-          <div className="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center bg-white shadow-lg rounded-5">
+          <div className="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center bg-white border rounded-5">
             <div className="d-lg-none mb-4 text-center">
               <img
                 src="/media/images/logo.png"
@@ -136,7 +133,7 @@ const Signup = () => {
               </ul>
             </div>
 
-            <div className="bg-light p-3 rounded-4 mb-4 border-start border-primary border-5 shadow-sm">
+            <div className="bg-light p-3 rounded-4 mb-4 border-start border-primary border-5">
               <p className="small text-muted mb-0">
                 <strong>Action Required:</strong> Click below to be securely
                 redirected to the Horizon login page.
@@ -145,7 +142,7 @@ const Signup = () => {
 
             <button
               onClick={handleSignInClick}
-              className="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow mb-4 d-flex align-items-center justify-content-center gap-2"
+              className="btn btn-primary w-100 py-3 fw-bold rounded-pill mb-4 d-flex align-items-center justify-content-center gap-2"
             >
               <i className="bi bi-box-arrow-in-right fs-5"></i>
               Sign In via Horizon Axis
