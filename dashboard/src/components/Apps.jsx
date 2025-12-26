@@ -5,41 +5,70 @@ const Apps = () => {
   return (
     <div className="apps-container">
       <div className="apps-content">
-        <h1 className="apps-title">Trading Tools & Apps</h1>
-        <p className="apps-subtitle">
-          Professional tools built for traders and analysts.
-        </p>
+        <div className="apps-header">
+          <div>
+            <h1 className="apps-title">Trading Ecosystem</h1>
+            <p className="apps-subtitle">
+              Enterprise-grade infrastructure for real-time market execution.
+            </p>
+          </div>
+          <div className="system-status">
+            <span className="status-dot"></span>
+            System Live: 12ms Latency
+          </div>
+        </div>
 
         <div className="tools-grid">
-          {/* Tool 1 */}
-          <div className="tool-card">
-            <div className="tool-icon">📈</div>
+          <div className="tool-card main-feature">
+            <div className="shape-container">
+              <div className="shape-chart"></div>
+            </div>
             <h3>Pro Charting</h3>
             <p>
-              Advanced indicators, drawing tools, and chart patterns for
-              technical analysis.
+              Execute technical analysis with ultra-low latency data feeds and
+              customizable indicator layers.
             </p>
-            <button className="tool-btn">Launch Charts</button>
+            <div className="card-footer">
+              <button className="tool-btn">Launch Terminal</button>
+              <span className="version-tag">v4.2.0</span>
+            </div>
           </div>
 
-          {/* Tool 2 */}
           <div className="tool-card">
-            <div className="tool-icon">📱</div>
-            <h3>Mobile Trading App</h3>
-            <p>
-              Trade on the go with fast execution, live prices, and alerts.
-            </p>
-            <button className="tool-btn">Download App</button>
+            <div className="shape-container">
+              <div className="shape-mobile"></div>
+            </div>
+            <h3>Mobile Access</h3>
+            <p>Synchronized cross-platform trading with biometric security.</p>
+            <button className="tool-btn secondary">Get App</button>
           </div>
 
-          {/* Tool 3 */}
           <div className="tool-card">
-            <div className="tool-icon">🤖</div>
+            <div className="shape-container">
+              <div className="shape-algo"></div>
+            </div>
             <h3>Algo Trading</h3>
             <p>
-              Automate your strategies with powerful algorithmic trading tools.
+              Deploy Python-based strategies via high-frequency API endpoints.
             </p>
-            <button className="tool-btn">Start Automating</button>
+            <button className="tool-btn secondary">API Docs</button>
+          </div>
+
+          <div className="tool-card full-width">
+            <div className="analytics-preview">
+              <div className="bar shadow"></div>
+              <div className="bar shadow" style={{ height: "60%" }}></div>
+              <div className="bar shadow" style={{ height: "90%" }}></div>
+              <div className="bar shadow" style={{ height: "40%" }}></div>
+            </div>
+            <div className="wide-content">
+              <h3>Market Analytics</h3>
+              <p>
+                Real-time sentiment tracking and volume profile analysis across
+                global exchanges.
+              </p>
+              <button className="tool-btn">Explore Data</button>
+            </div>
           </div>
         </div>
       </div>
