@@ -33,7 +33,7 @@ function Team() {
           <p>
             My day-to-day work involves collaborating with the design team,
             writing clean, modular code, and integrating RESTful APIs to bring
-            data to life on the **Axis** platform.
+            data to life on the Axis platform.
           </p>
           <p>
             I thrive on tackling complex UI challenges and delivering highly
