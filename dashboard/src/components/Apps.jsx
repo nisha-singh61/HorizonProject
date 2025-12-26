@@ -12,7 +12,8 @@ const Apps = () => {
               Enterprise-grade infrastructure for real-time market execution.
             </p>
           </div>
-          <div className="system-status">
+          {/* aria-live makes screen readers announce status changes */}
+          <div className="system-status" role="status" aria-live="polite">
             <span className="status-dot"></span>
             System Live: 12ms Latency
           </div>
@@ -20,7 +21,7 @@ const Apps = () => {
 
         <div className="tools-grid">
           <div className="tool-card main-feature">
-            <div className="shape-container">
+            <div className="shape-container" aria-hidden="true">
               <div className="shape-chart"></div>
             </div>
             <h3>Pro Charting</h3>
@@ -29,33 +30,48 @@ const Apps = () => {
               customizable indicator layers.
             </p>
             <div className="card-footer">
-              <button className="tool-btn">Launch Terminal</button>
+              <button
+                className="tool-btn"
+                aria-label="Launch professional charting terminal"
+              >
+                Launch Terminal
+              </button>
               <span className="version-tag">v4.2.0</span>
             </div>
           </div>
 
           <div className="tool-card">
-            <div className="shape-container">
+            <div className="shape-container" aria-hidden="true">
               <div className="shape-mobile"></div>
             </div>
             <h3>Mobile Access</h3>
             <p>Synchronized cross-platform trading with biometric security.</p>
-            <button className="tool-btn secondary">Get App</button>
+            <button
+              className="tool-btn secondary"
+              aria-label="Download mobile trading application"
+            >
+              Get App
+            </button>
           </div>
 
           <div className="tool-card">
-            <div className="shape-container">
+            <div className="shape-container" aria-hidden="true">
               <div className="shape-algo"></div>
             </div>
             <h3>Algo Trading</h3>
             <p>
               Deploy Python-based strategies via high-frequency API endpoints.
             </p>
-            <button className="tool-btn secondary">API Docs</button>
+            <button
+              className="tool-btn secondary"
+              aria-label="View algorithmic trading API documentation"
+            >
+              API Docs
+            </button>
           </div>
 
           <div className="tool-card full-width">
-            <div className="analytics-preview">
+            <div className="analytics-preview" aria-hidden="true">
               <div className="bar shadow"></div>
               <div className="bar shadow" style={{ height: "60%" }}></div>
               <div className="bar shadow" style={{ height: "90%" }}></div>
@@ -63,11 +79,13 @@ const Apps = () => {
             </div>
             <div className="wide-content">
               <h3>Market Analytics</h3>
-              <p>
-                Real-time sentiment tracking and volume profile analysis across
-                global exchanges.
-              </p>
-              <button className="tool-btn">Explore Data</button>
+              <p>Real-time sentiment tracking and volume profile analysis.</p>
+              <button
+                className="tool-btn"
+                aria-label="Explore real-time market sentiment data"
+              >
+                Explore Data
+              </button>
             </div>
           </div>
         </div>
