@@ -2465,3 +2465,228 @@ div.row .hero-img {
   .universe-main-title { font-size: 2.4rem; }
   .universe-card { padding: 1.5rem; }
 }
+
+/* Pricing Component */
+.pricing-hero-wrapper {
+  background-color: #f8fafc;
+}
+
+/* Typography Enhancements */
+.text-gradient {
+  background: linear-gradient(135deg, #3d77cd, #6c5ce7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #ebf2ff;
+  color: #3d77cd;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pricing-main-title {
+  color: #0f172a;
+  letter-spacing: -2px;
+}
+
+/* Card Styling */
+.pricing-glass-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 32px;
+  padding: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-featured-card {
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 32px;
+  padding: 2.5rem;
+  transform: scale(1.03); /* Subtle pop for the middle card */
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
+  border: 1px solid #1e293b;
+}
+
+.pricing-glass-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* Image Logic */
+.pricing-img {
+  max-height: 140px;
+  width: auto;
+  margin-bottom: 2rem;
+  object-fit: contain;
+}
+
+/* Price Tags */
+.price-tag {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #3d77cd;
+}
+
+.price-tag-featured {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #60a5fa;
+}
+
+.price-tag small, .price-tag-featured small {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Asset Banner */
+.asset-banner {
+  background: linear-gradient(90deg, #1e293b 0%, #334155 100%);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.banner-img {
+  max-height: 120px;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* Bento Stats */
+.stat-bento-box {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.stat-bento-box:hover {
+  border-color: #3d77cd;
+}
+
+.fw-800 { font-weight: 800; }
+
+/* Responsive Adjustments */
+@media (max-width: 991px) {
+  .pricing-featured-card { transform: scale(1); margin: 10px 0; }
+  .pricing-main-title { font-size: 2.5rem; }
+  .pricing-glass-card { padding: 1.5rem; }
+}
+
+/* Brokerage */
+.brokerage-modern-wrapper {
+  background-color: #f8fafc;
+}
+
+.main-info-card {
+  background: #ffffff;
+  border-radius: 30px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Left Side Styling */
+.info-content-side {
+  background: #ffffff;
+}
+
+.accent-line {
+  display: block;
+  width: 50px;
+  height: 4px;
+  background: #3d77cd;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.info-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  background: rgba(61, 119, 205, 0.1);
+  color: #3d77cd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.info-text p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Right Side (Action Panel) */
+.action-side {
+  background: linear-gradient(160deg, #1e293b 0%, #0f172a 100%);
+  color: white;
+}
+
+.btn-light-blur {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-light-blur:hover {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.btn-outline-light-custom {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-outline-light-custom:hover {
+  border-color: white;
+  color: white;
+}
+
+.statutory-note {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-info-card {
+    border-radius: 20px;
+  }
+}

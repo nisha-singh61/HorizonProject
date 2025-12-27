@@ -1,89 +1,81 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Brokerage() {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const listStyle = {
-    textAlign: "left",
-    lineHeight: "1.8",
-    fontSize: "13px",
-    color: "#555",
-  };
-
-  const linkHeaderStyle = {
-    textDecoration: "none",
-    color: "#3d77cd",
-    fontWeight: "600",
-  };
-
-  const buttonStyle = {
-    backgroundColor: isHovered ? "#3d77cd" : "#ffffff",
-    color: isHovered ? "#ffffff" : "#3d77cd",
-    border: "2px solid #3d77cd",
-    fontWeight: "600",
-    transition: "all 0.3s ease",
-    textDecoration: "none"
-  };
-
   return (
-    <div className="container brokerage-section py-5">
-      <div className="row g-4 p-5 mt-2 bg-light rounded-4 shadow-sm border">
-        <div className="col-lg-8 col-md-12 p-4">
-          <div className="d-flex align-items-center mb-4">
-            <div style={{width: "4px", height: "24px", backgroundColor: "#3d77cd", marginRight: "12px"}}></div>
-            <a href="/calculator" style={linkHeaderStyle}>
-              <h3 className="fs-5 mb-0">Interactive Brokerage Calculator</h3>
-            </a>
-          </div>
+    <section className="brokerage-modern-wrapper py-5">
+      <div className="container">
+        <div className="row g-0 main-info-card overflow-hidden shadow-lg">
           
-          <ul style={listStyle} className="list-unstyled">
-            <li className="mb-3">
-              <span className="badge bg-primary-subtle text-primary me-2">Service</span>
-              <strong>Call & Trade:</strong> Manual orders via our desk or RMS auto-squareoff incur an additional fee of <span className="text-dark fw-bold">₹50 + GST</span> per order.
-            </li>
-            <li className="mb-3">
-              <span className="badge bg-success-subtle text-success me-2">Eco-Friendly</span>
-              <strong>Digital First:</strong> Smart contract notes are delivered instantly to your registered e-mail at no cost.
-            </li>
-            <li className="mb-3">
-              <span className="badge bg-warning-subtle text-warning me-2">Optional</span>
-              <strong>Physical Copies:</strong> Hard copies of contract notes are available upon request at <span className="text-dark fw-bold">₹20</span> per note plus courier charges.
-            </li>
-            <li className="mb-3">
-              <span className="badge bg-info-subtle text-info me-2">Global</span>
-              <strong>NRI Accounts:</strong> For non-PIS, charges are 0.5% or ₹100; for PIS, it is 0.5% or ₹200 per executed order.
-            </li>
-            <li className="mb-3">
-              <span className="badge bg-danger-subtle text-danger me-2">Policy</span>
-              <strong>Debit Balances:</strong> To maintain system integrity, accounts in debit will be charged <span className="text-dark fw-bold">₹40</span> per order on the <strong>Axis</strong> terminal.
-            </li>
-          </ul>
-        </div>
+          {/* Left Column: The Fine Print */}
+          <div className="col-lg-8 info-content-side p-4 p-md-5">
+            <div className="section-header mb-5">
+              <span className="accent-line"></span>
+              <h2 className="h4 fw-bold">Important Service Disclosures</h2>
+              <p className="text-muted small">Transparency is our priority. Here are the specific charges for additional services.</p>
+            </div>
 
-        <div className="col-lg-4 col-md-12 p-4 border-start d-flex flex-column justify-content-center">
-          <div className="text-center">
-            <h3 className="fs-5 mb-4">Want more details?</h3>
-            <a 
-              href="/charges" 
-              className="btn px-4 py-2 rounded-pill w-100 mb-3 shadow-sm d-inline-block"
-              style={buttonStyle}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              Detailed List of Charges
-            </a>
-            <p className="text-muted small">
-              View comprehensive tax breakdowns, including STT, GST, and SEBI charges for your Horizon account.
-            </p>
-            <div className="mt-4 p-3 bg-white rounded border border-info-subtle">
-              <p className="mb-0 small text-info">
-                <strong>Note:</strong> All charges are exclusive of statutory taxes and levies.
-              </p>
+            <div className="info-grid">
+              <div className="info-item">
+                <div className="info-icon"><i className="fa-solid fa-phone-volume"></i></div>
+                <div className="info-text">
+                  <h4 className="h6 fw-bold mb-1">Call & Trade Orders</h4>
+                  <p>Additional fee of <strong>₹50 + GST</strong> per order for manual desk execution or RMS square-offs.</p>
+                </div>
+              </div>
+
+              <div className="info-item">
+                <div className="info-icon"><i className="fa-solid fa-leaf"></i></div>
+                <div className="info-text">
+                  <h4 className="h6 fw-bold mb-1">Digital Smart Notes</h4>
+                  <p>Eco-friendly digital contract notes delivered to your inbox at <strong>no cost</strong>.</p>
+                </div>
+              </div>
+
+              <div className="info-item">
+                <div className="info-icon"><i className="fa-solid fa-print"></i></div>
+                <div className="info-text">
+                  <h4 className="h6 fw-bold mb-1">Physical Documentation</h4>
+                  <p>Hard copies available at <strong>₹20</strong> per note plus courier charges for archival needs.</p>
+                </div>
+              </div>
+
+              <div className="info-item">
+                <div className="info-icon"><i className="fa-solid fa-globe"></i></div>
+                <div className="info-text">
+                  <h4 className="h6 fw-bold mb-1">NRI Special Accounts</h4>
+                  <p>Non-PIS: 0.5% or ₹100. PIS: 0.5% or ₹200 per executed trade.</p>
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* Right Column: The Action Panel */}
+          <div className="col-lg-4 action-side p-4 p-md-5 d-flex align-items-center">
+            <div className="action-card-inner text-center w-100">
+              <h3 className="h5 fw-bold text-white mb-4">Calculate Your Fees</h3>
+              <p className="text-white-50 small mb-4">
+                Use our real-time calculator to see exact breakdowns of STT, GST, and SEBI charges before you trade.
+              </p>
+              
+              <div className="d-grid gap-3">
+                <a href="/calculator" className="btn btn-light-blur">
+                  Brokerage Calculator
+                </a>
+                <a href="/charges" className="btn btn-outline-light-custom">
+                  Detailed Charge List
+                </a>
+              </div>
+
+              <div className="statutory-note mt-5">
+                <i className="fa-solid fa-circle-info me-2"></i>
+                Note: All charges exclude statutory taxes.
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
