@@ -125,7 +125,7 @@ function Footer() {
                 This MERN stack application is a non-commercial portfolio
                 project. All stock data and financial executions are{" "}
                 <strong>simulated</strong>. This project is not affiliated with
-                Zerodha, NSE, or any financial body.
+                any financial body.
               </p>
               <p className="mb-0">
                 <strong>Developer:</strong> Nisha Singh Kushwaha |
