@@ -2092,3 +2092,108 @@ div.row .hero-img {
   .achievement-card { right: 50%; transform: translateX(50%); top: -20px; }
   .edu-feature-card:hover { transform: translateY(-5px); }
 }
+
+/* Open Account Section */
+.cta-modern-wrapper {
+  background-color: #ffffff; /* Page background stays light */
+}
+
+.cta-card-premium {
+  background: #0f172a; /* Deep Navy/Black Background */
+  border-radius: 40px;
+  padding: 5rem 4rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 40px 100px rgba(15, 23, 42, 0.2);
+}
+
+/* Typography */
+.cta-title {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-text {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+/* Decorative Glows */
+.glow-element {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.glow-element.top-left {
+  background: #3d77cd;
+  top: -100px;
+  left: -100px;
+}
+
+.glow-element.bottom-right {
+  background: #c084fc;
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Button Styling */
+.modern-primary-btn {
+  background: #ffffff;
+  color: #0f172a;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.modern-primary-btn:hover {
+  background: #f8fafc;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+.tiny-info {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+  .cta-card-premium {
+    padding: 3.5rem 2rem;
+    text-align: center;
+    border-radius: 30px;
+  }
+  
+  .cta-title {
+    font-size: 2.2rem;
+  }
+
+  .cta-text {
+    margin: 0 auto;
+  }
+
+  .modern-primary-btn {
+    width: auto;
+  }
+}
