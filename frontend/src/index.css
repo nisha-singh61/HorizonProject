@@ -1527,17 +1527,36 @@ div.row .hero-img {
 .float-anim-2 { animation: floating 6.5s ease-in-out infinite; }
 .float-anim-3 { animation: floating 4s ease-in-out infinite; }
 
+/* --- Hero Theme Text Updates --- */
+
 .hero-heading { 
-  font-size: clamp(2.2rem, 5vw, 3.5rem); /* Shrinks on mobile, grows on desktop */
+  font-size: clamp(2.2rem, 5vw, 3.5rem); 
   font-weight: 800; 
-  color: #0f172a; 
+  color: #0f172a; /* Default color for the main heading */
   margin-bottom: 1.5rem; 
   line-height: 1.2;
 }
-.brand-text { color: #3d77cd; }
-.hero-description { font-size: 1.25rem; line-height: 1.8; color: #475569; margin-bottom: 3rem; }
-.hero-badge { display: inline-block; padding: 0.5rem 1rem; border-radius: 50rem; background-color: rgba(61, 119, 205, 0.08); color: #3d77cd; margin-bottom: 1.5rem; font-weight: 700; }
 
+/* Apply this class to specific words inside your <h1> or <h2> */
+.brand-text { 
+  background: linear-gradient(135deg, #3d77cd, #6c5ce7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Important: Remove any standard 'color' property here or it will override the gradient */
+}
+
+/* Optional: If you want the ENTIRE heading to be gradient */
+.hero-heading-gradient {
+  font-size: clamp(2.2rem, 5vw, 3.5rem); 
+  font-weight: 800; 
+  background: linear-gradient(135deg, #3d77cd, #6c5ce7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem; 
+  line-height: 1.2;
+}
 
 
 /* Awards Section */
