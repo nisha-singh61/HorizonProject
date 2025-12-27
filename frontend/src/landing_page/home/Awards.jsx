@@ -8,13 +8,12 @@ function Awards() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // This adds the class that triggers all CSS transitions
             entry.target.classList.add("start-animation");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.2 } // Triggers when 20% of the section is visible
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -22,81 +21,69 @@ function Awards() {
   }, []);
 
   return (
-    <section className="awards-section py-5 overflow-hidden" ref={sectionRef}>
-      <div className="container mt-5">
-        <div className="row align-items-center">
-          {/* Left Column: Image with Floating & Entrance */}
-          <div className="col-12 col-md-6 p-4 text-center fade-up-scroll delay-1">
-            <div className="float-anim-1">
-              <img
-                src="media/images/largestBroker.png"
-                alt="Largest Broker Award"
-                className="img-fluid awards-img shadow-lg rounded-4"
-                style={{ width: "420px" }}
-              />
+    <section className="awards-modern-wrapper py-5" ref={sectionRef}>
+      {/* Dynamic Background Elements */}
+      <div className="bg-blur-circle-top"></div>
+
+      <div className="container py-5">
+        <div className="row g-0 align-items-center">
+          {/* Content Column: Using an Offset Layout */}
+          <div className="col-lg-7 z-index-2">
+            <div className="awards-content-card glass-panel fade-up-scroll delay-1">
+              <div className="hero-badge mb-4">Market Leader 2025</div>
+
+              <h1 className="display-4 fw-bold mb-4">
+                Redefining the <span className="text-gradient">Horizon</span> of
+                Trading
+              </h1>
+
+              <p className="lead text-secondary mb-5">
+                Axis isn't just a platform; it's a high-performance engine for
+                serious investors. We've built the infrastructure so you can
+                focus entirely on your strategy.
+              </p>
+
+              {/* Modern Grid-based Asset Display */}
+              <div className="asset-grid fade-up-scroll delay-3">
+                {[
+                  { icon: "fa-chart-line", label: "Stocks & IPOs" },
+                  { icon: "fa-seedling", label: "Mutual Funds" },
+                  { icon: "fa-file-invoice-dollar", label: "Bonds & G-Secs" },
+                  { icon: "fa-bolt", label: "Strategic F&O" },
+                  { icon: "fa-globe", label: "Global ETFs" },
+                  { icon: "fa-coins", label: "Commodities" },
+                ].map((item, index) => (
+                  <div key={index} className="asset-pill">
+                    <i className={`fa-solid ${item.icon} me-2`}></i>
+                    {item.label}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Text and Icon Lists */}
-          <div className="col-12 col-md-6 p-4 text-center text-md-start">
-            <div className="hero-badge fade-up-scroll delay-2">
-              Market Leader
-            </div>
-
-            <h1 className="hero-heading fade-up-scroll delay-3">
-              Horizon: Your <span className="brand-text">Foundation</span> for
-              Growth
-            </h1>
-
-            <p className="hero-description fade-up-scroll delay-4">
-              Axis, the flagship trading platform of Horizon, is trusted by a
-              rapidly growing community of traders. We provide the
-              infrastructure to scale your investment journey.
-            </p>
-
-            <div className="row g-3 fade-up-scroll delay-5">
-              <div className="col-6">
-                <ul className="list-unstyled">
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Stocks & IPOs
-                  </li>
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Mutual Funds
-                  </li>
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Bonds
-                  </li>
-                </ul>
+          {/* Image Column: Offset and overlapping */}
+          <div className="col-lg-5 ps-lg-0 mt-5 mt-lg-0">
+            <div className="visual-stack-container fade-up-scroll delay-2">
+              <div className="main-visual-wrapper float-anim-1">
+                <img
+                  src="media/images/largestBroker.png"
+                  alt="Horizon Platform"
+                  className="img-fluid main-award-img"
+                />
               </div>
-              <div className="col-6">
-                <ul className="list-unstyled">
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Strategic F&O
-                  </li>
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Global ETFs
-                  </li>
-                  <li className="list-item-hover">
-                    <i className="fa-solid fa-circle-check brand-text me-2"></i>{" "}
-                    Commodities
-                  </li>
-                </ul>
+              {/* Decorative Card Element */}
+              <div className="floating-data-card float-anim-2">
+                <div className="d-flex align-items-center">
+                  <div className="stat-circle me-3">
+                    <i className="fa-solid fa-arrow-trend-up"></i>
+                  </div>
+                  <div>
+                    <div className="fw-bold small text-dark">+24% Activity</div>
+                    <div className="text-muted smaller">Weekly Growth</div>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Press Branding */}
-            <div className="mt-5 pt-4 border-top fade-up-scroll delay-5 opacity-75">
-              <img
-                src="media/images/pressLogos.svg"
-                alt="Press"
-                className="img-fluid"
-                style={{ maxHeight: "30px" }}
-              />
             </div>
           </div>
         </div>

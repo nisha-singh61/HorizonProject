@@ -13,90 +13,116 @@ function Stats() {
           }
         });
       },
-      { threshold: 0.15 } // Triggers when 15% is visible
+      { threshold: 0.1 }
     );
 
-    if (statsRef.current) observer.observe(statsRef.current);
+    // FIXED: Using statsRef correctly
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="container py-5 stats-section" ref={statsRef}>
-      <div className="row align-items-center g-5">
-        {/* Left Column: Text Content */}
-        <div className="col-12 col-lg-6">
-          <div className="hero-badge fade-up-scroll delay-1">
-            Integrity & Innovation
-          </div>
-          <h1 className="hero-heading fade-up-scroll delay-2">
-            Build Your Wealth on{" "}
-            <span className="brand-text">Solid Ground</span>
-          </h1>
+    <section className="stats-modern-outer py-5" ref={statsRef}>
+      <div className="container py-5">
+        <div className="row g-5 align-items-center">
+          {/* Left Column: The Dashboard Showcase */}
+          <div className="col-12 col-lg-6 order-2 order-lg-1">
+            <div className="stats-visual-container fade-up-scroll delay-1">
+              <div className="stats-blob"></div>
 
-          <div className="stats-content mt-4">
-            <div className="mb-4 fade-up-scroll delay-3">
-              <h2 className="fs-5 fw-bold mb-2">Built on Trust</h2>
-              <p className="text-muted">
-                Horizon is committed to transparency and user security. Our
-                advanced Axis platform is used by a dedicated community managing
-                significant capital.
-              </p>
-            </div>
+              <div className="showcase-card float-anim-1">
+                <img
+                  src="media/images/ecosystem.png"
+                  className="img-fluid showcase-img"
+                  alt="Horizon Ecosystem"
+                />
 
-            <div className="mb-4 fade-up-scroll delay-4">
-              <h2 className="fs-5 fw-bold mb-2">No spam or gimmicks</h2>
-              <p className="text-muted">
-                We avoid distraction. No aggressive notifications or
-                gamification—just clean, high-performance tools for your
-                financial goals.
-              </p>
-            </div>
-
-            <div className="mb-4 fade-up-scroll delay-5">
-              <h2 className="fs-5 fw-bold mb-2">The Horizon universe</h2>
-              <p className="text-muted">
-                More than trading. We foster an ecosystem of financial tools and
-                partnerships tailored to your long-term wealth strategy.
-              </p>
-            </div>
-
-            <div className="fade-up-scroll delay-5">
-              <h2 className="fs-5 fw-bold mb-2">Do better with money</h2>
-              <p className="text-muted">
-                Through features like Trade-Guard and integrated risk alerts, we
-                actively encourage responsible decision-making.
-              </p>
+                {/* Floating Micro-Stat Card */}
+                <div className="floating-badge shadow-sm">
+                  <div className="badge-icon">
+                    <i className="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <div>
+                    <div className="fw-bold small">Trade-Guard</div>
+                    <div className="text-muted smaller">Active Protection</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Column: Visual/Image */}
-        <div className="col-12 col-lg-6 text-center">
-          <div className="fade-up-scroll delay-3">
-            <div className="float-anim-2">
-              {" "}
-              {/* Using your floating keyframe */}
-              <img
-                src="media/images/ecosystem.png"
-                className="img-fluid stats-img mb-4"
-                alt="Ecosystem"
-                style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.08))" }}
-              />
-            </div>
+          {/* Right Column: Information Architecture */}
+          <div className="col-12 col-lg-6 order-1 order-lg-2">
+            <div className="ps-lg-5">
+              <div className="hero-badge fade-up-scroll delay-1">
+                Integrity & Innovation
+              </div>
 
-            <div className="custom-links mt-3">
-              <a href="#" className="hero-link mx-3">
-                View All Asset Classes{" "}
-                <i className="fa fa-long-arrow-right ms-2"></i>
-              </a>
-              <a href="#" className="hero-link mx-3">
-                Try Kito demo <i className="fa fa-long-arrow-right ms-2"></i>
-              </a>
+              <h1 className="display-5 fw-bold mb-4 fade-up-scroll delay-2">
+                Build Your Wealth on <br />
+                <span className="text-gradient">Solid Ground</span>
+              </h1>
+
+              <div className="stats-grid mt-4">
+                {/* Feature 1 */}
+                <div className="stat-card fade-up-scroll delay-3">
+                  <div className="stat-icon-box">
+                    <i className="fa-solid fa-building-columns"></i>
+                  </div>
+                  <div>
+                    <h3 className="h5 fw-bold mb-1">Built on Trust</h3>
+                    <p className="small text-muted mb-0">
+                      Transparency and security are at our core. Manage
+                      significant capital with absolute peace of mind.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Feature 2 */}
+                <div className="stat-card fade-up-scroll delay-4">
+                  <div className="stat-icon-box">
+                    <i className="fa-solid fa-ban"></i>
+                  </div>
+                  <div>
+                    <h3 className="h5 fw-bold mb-1">Zero Gimmicks</h3>
+                    <p className="small text-muted mb-0">
+                      No spam, no aggressive notifications, and no gamification.
+                      Just clean, professional tools.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Feature 3 */}
+                <div className="stat-card fade-up-scroll delay-5">
+                  <div className="stat-icon-box">
+                    <i className="fa-solid fa-layer-group"></i>
+                  </div>
+                  <div>
+                    <h3 className="h5 fw-bold mb-1">The Horizon Universe</h3>
+                    <p className="small text-muted mb-0">
+                      A complete ecosystem of financial tools and partnerships
+                      tailored to your long-term strategy.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 pt-2 fade-up-scroll delay-5">
+                <a href="#" className="modern-btn me-3">
+                  Explore Asset Classes
+                </a>
+                <a href="#" className="modern-link">
+                  Try Demo <i className="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
