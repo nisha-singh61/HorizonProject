@@ -1,58 +1,96 @@
 import React from "react";
 
 function Team() {
-  return (
-    <div className="container">
-      {/* Section Title */}
-      <div className="row p-3 mt-5 text-muted">
-        <h3 className="text-center">People</h3>
-      </div>
+  const brandBlue = "#3d77cd";
 
-      {/* Team Member */}
-      <div className="row p-3 about-section team-section align-items-center">
-        {/* Image Column */}
-        <div className="col-md-6 col-12 p-3 text-center">
-          <img
-            src="media/images/nishaSingh.svg"
-            alt="Nithin Kamath"
-            className="team-img"
-          />
-          <h5 className="mt-4">Nisha Singh</h5>
-          <h6 className="text-muted mt-2">Lead Developer / Component Architect</h6>
+  return (
+    <div className="team-container bg-light min-vh-100 d-flex align-items-center">
+      <div className="container">
+        {/* Section Header */}
+        <div className="row mb-5">
+          <div className="col-12 text-center">
+            <h6
+              className="text-uppercase fw-bold mb-2"
+              style={{ color: brandBlue, letterSpacing: "2px" }}
+            >
+              The Minds Behind Horizon
+            </h6>
+            <h2 className="display-5 fw-bold text-dark">Meet Our Leadership</h2>
+            <div
+              className="mx-auto mt-3"
+              style={{
+                width: "60px",
+                height: "4px",
+                backgroundColor: brandBlue,
+                borderRadius: "2px",
+              }}
+            ></div>
+          </div>
         </div>
 
-        {/* Info Column */}
-        <div className="col-md-6 col-12 p-3 team-info">
-          <p>
-            I am the architect responsible for building and maintaining core
-            front-end components like this one, ensuring a seamless and
-            responsive user experience for Horizon's clients. My focus is on
-            robust, scalable, and modern React development, leveraging the
-            latest in design and performance optimization.
-          </p>
-          <p>
-            My day-to-day work involves collaborating with the design team,
-            writing clean, modular code, and integrating RESTful APIs to bring
-            data to life on the Axis platform.
-          </p>
-          <p>
-            I thrive on tackling complex UI challenges and delivering highly
-            performant applications.
-          </p>
-          <p>
-            Connect on{" "}
-            <a href="#" className="about-link">
-              Homepage
-            </a>{" "}
-            /{" "}
-            <a href="#" className="about-link">
-              Contact
-            </a>{" "}
-            /{" "}
-            <a href="#" className="about-link">
-              GitHub
-            </a>
-          </p>
+        {/* Featured Profile Card */}
+        <div className="row justify-content-center">
+          <div className="col-lg-10">
+            <div className="profile-card shadow-sm p-4 p-lg-5">
+              <div className="row align-items-center g-5">
+                {/* Image Section */}
+                <div className="col-md-5 text-center">
+                  <div className="image-wrapper mb-4">
+                    <img
+                      src="media/images/nishaSingh.svg"
+                      alt="Nisha Singh"
+                      className="team-img-modern"
+                    />
+                  </div>
+                  <h3 className="fw-bold text-dark mb-1">Nisha Singh</h3>
+                  <span className="role-badge fw-bold text-uppercase">
+                    Lead Developer
+                  </span>
+                </div>
+
+                {/* Content Section */}
+                <div className="col-md-7 border-start-md px-lg-5">
+                  <div className="mb-4">
+                    <h4
+                      className="h5 fw-bold mb-3"
+                      style={{ color: brandBlue }}
+                    >
+                      Component Architect
+                    </h4>
+                    <p className="bio-text">
+                      I am the architect responsible for building and
+                      maintaining core front-end components, ensuring a seamless
+                      and responsive user experience for Horizon's clients. My
+                      focus is on
+                      <strong>
+                        {" "}
+                        robust, scalable, and modern React development
+                      </strong>
+                      , leveraging performance optimization at every layer.
+                    </p>
+                    <p className="bio-text">
+                      My day-to-day work involves collaborating with the design
+                      team, writing clean modular code, and integrating RESTful
+                      APIs to bring real-time data to life on the Axis platform.
+                    </p>
+                  </div>
+
+                  {/* Connect Links */}
+                  <div className="d-flex flex-wrap gap-3 mt-4">
+                    <a href="#" className="social-link">
+                      <i className="bi bi-house-door me-2"></i>Homepage
+                    </a>
+                    <a href="#" className="social-link">
+                      <i className="bi bi-envelope me-2"></i>Contact
+                    </a>
+                    <a href="#" className="social-link">
+                      <i className="bi bi-github me-2"></i>GitHub
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
