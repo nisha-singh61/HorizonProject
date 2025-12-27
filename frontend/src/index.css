@@ -997,6 +997,8 @@ div.row .hero-img {
     }
 }
 
+
+
 /* Signup Page */
 /* Container Background */
 .horizon-signup-wrapper {
@@ -1118,145 +1120,212 @@ div.row .hero-img {
 
 
 /* About section */
-.about-container {
-  font-family: 'Inter', sans-serif;
+.about-page-wrapper {
+  background-color: #fafafa;
+  color: #1a1a1a;
 }
 
-/* Hero Title Gradient */
-.brand-gradient {
-  background: linear-gradient(45deg, #3d77cd, #2a528d);
+.fw-800 { font-weight: 800; }
+
+/* Text Gradient Effect */
+.text-gradient {
+  background: linear-gradient(135deg, #3d77cd, #6c5ce7);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Card Hover Zoom Effect */
-.info-card {
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-  border-radius: 1.25rem !important;
+.reveal-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: #f0f5ff;
+  color: #3d77cd;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
-.info-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 1rem 3rem rgba(61, 119, 205, 0.15) !important;
+.about-lead {
+  max-width: 700px;
+  font-size: 1.25rem;
 }
 
-/* Axis Terminal Special Styling */
-.terminal-card {
-  background: #1a1d23 !important;
+/* Bento Grid Logic */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 200px);
+  gap: 20px;
+}
+
+.bento-item {
+  border-radius: 24px;
   position: relative;
-  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.terminal-card::after {
-  content: "";
+.bento-tall {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.icon-pill {
+  width: 50px;
+  height: 50px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  font-size: 1.5rem;
+}
+
+.icon-circle {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+/* Statistics Layout */
+.stats-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.stat-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+.featured-stat {
+  grid-column: span 2;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .bento-tall { grid-column: span 1; }
+  .about-title { font-size: 2.5rem; }
+}
+
+/* About Team */
+.team-hub-wrapper {
+  background-color: #f8fafc;
+  min-height: 90vh;
+}
+
+.fw-800 { font-weight: 800; }
+
+/* The Main Card */
+.architect-card {
+  border-radius: 30px;
+  border: none;
+  background: white;
+}
+
+/* Visual Side Background */
+.bg-dark-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  min-height: 450px;
+}
+
+/* Floating "ARCHITECT" Vertical Text */
+.vertical-label-bg {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(61, 119, 205, 0.1) 0%, transparent 70%);
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%) rotate(-90deg);
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: 15px;
   pointer-events: none;
 }
 
-/* Stat Box Styling */
-.stat-box {
-  background: #f8f9fa;
-  border: 1px solid #eee;
-  transition: all 0.3s ease;
-}
-
-.stat-box:hover {
-  background: #ffffff;
-  border-color: #3d77cd;
-}
-
-/* Custom Button */
-.btn-brand {
-  border: 2px solid #3d77cd;
-  color: #3d77cd;
-  background: transparent;
-  transition: all 0.3s ease;
-}
-
-.btn-brand:hover {
-  background-color: #3d77cd;
-  color: white;
-  box-shadow: 0 4px 15px rgba(61, 119, 205, 0.3);
-}
-
-.team-container {
-  padding: 80px 0;
-}
-
-.profile-card {
-  background: white;
-  border-radius: 2rem;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.image-wrapper::before {
-  content: "";
+.experience-tag {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: -10px;
-  bottom: -10px;
-  background: #3d77cd;
-  border-radius: 50%;
-  z-index: 0;
-  opacity: 0.1;
-}
-
-.team-img-modern {
-  width: 280px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-  border: 8px solid white;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-
-.social-link {
-  color: #3d77cd;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: #f0f5ff;
-  font-size: 0.9rem;
-}
-
-.social-link:hover {
-  background: #3d77cd;
+  top: 30px;
+  right: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 12px;
   color: white;
-  transform: translateY(-2px);
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.bio-text {
-  line-height: 1.8;
-  color: #555;
-  font-size: 1.05rem;
+.image-wrapper-modern img {
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+  transition: transform 0.5s ease;
 }
 
-.role-badge {
-  display: inline-block;
-  background: #e0eaff;
+.architect-card:hover .image-wrapper-modern img {
+  transform: scale(1.05) translateY(-10px);
+}
+
+/* Modern Social Buttons */
+.modern-social-btn {
+  text-decoration: none;
+  color: #475569;
+  padding: 10px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.3s;
+  background: white;
+}
+
+.modern-social-btn:hover {
+  border-color: #3d77cd;
   color: #3d77cd;
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(61, 119, 205, 0.1);
+}
+
+.github-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+}
+
+.github-btn:hover {
+  background: #333;
+  color: white;
+}
+
+@media (max-width: 991px) {
+  .bg-dark-gradient { min-height: 350px; }
+  .vertical-label-bg { font-size: 4rem; }
 }
 
 /* --- Footer Section --- */
