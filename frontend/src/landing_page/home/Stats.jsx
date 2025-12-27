@@ -1,56 +1,98 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 function Stats() {
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("start-animation");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 } // Triggers when 15% is visible
+    );
+
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="container p-3 stats-section">
-      <div className="row align-items-center">
-        <div className="col-12 col-lg-6 p-4">
-          <h1 className="fs-2 mb-4">Integrity and Innovation</h1>
+    <div className="container py-5 stats-section" ref={statsRef}>
+      <div className="row align-items-center g-5">
+        {/* Left Column: Text Content */}
+        <div className="col-12 col-lg-6">
+          <div className="hero-badge fade-up-scroll delay-1">
+            Integrity & Innovation
+          </div>
+          <h1 className="hero-heading fade-up-scroll delay-2">
+            Build Your Wealth on{" "}
+            <span className="brand-text">Solid Ground</span>
+          </h1>
 
-          <h2 className="fs-5 mb-2">Built on Trust</h2>
-          <p className="text-muted mb-3">
-            Horizon is committed to transparency and user security. Our advanced
-            Axis platform is used by a dedicated community of investors managing
-            significant capital, proving our reliability in a dynamic market.
-          </p>
+          <div className="stats-content mt-4">
+            <div className="mb-4 fade-up-scroll delay-3">
+              <h2 className="fs-5 fw-bold mb-2">Built on Trust</h2>
+              <p className="text-muted">
+                Horizon is committed to transparency and user security. Our
+                advanced Axis platform is used by a dedicated community managing
+                significant capital.
+              </p>
+            </div>
 
-          <h2 className="fs-5 mb-2">No spam or gimmicks</h2>
-          <p className="text-muted mb-3" style={{ lineHeight: "1.6" }}>
-            We avoid distraction. No aggressive notifications, no gamified
-            investing, just clean, high-performance applications that let you
-            focus entirely on your financial goals.{" "}
-            <a href="/philosophies" className="stats-link">
-              Our philosophies.
-            </a>
-          </p>
+            <div className="mb-4 fade-up-scroll delay-4">
+              <h2 className="fs-5 fw-bold mb-2">No spam or gimmicks</h2>
+              <p className="text-muted">
+                We avoid distraction. No aggressive notifications or
+                gamification—just clean, high-performance tools for your
+                financial goals.
+              </p>
+            </div>
 
-          <h2 className="fs-5 mb-2">The Horizon universe</h2>
-          <p className="text-muted mb-3" style={{ lineHeight: "1.6" }}>
-            More than just trading. We foster an ecosystem of financial tools
-            and partnerships to provide tailored solutions and deeper insights
-            specific to your long-term wealth strategy.
-          </p>
+            <div className="mb-4 fade-up-scroll delay-5">
+              <h2 className="fs-5 fw-bold mb-2">The Horizon universe</h2>
+              <p className="text-muted">
+                More than trading. We foster an ecosystem of financial tools and
+                partnerships tailored to your long-term wealth strategy.
+              </p>
+            </div>
 
-          <h2 className="fs-5 mb-2">Do better with money</h2>
-          <p className="text-muted" style={{ lineHeight: "1.6" }}>
-            Through innovative features like Trade-Guard (our version of Kill
-            Switch) and integrated risk alerts, we actively encourage
-            responsible decision-making and help you avoid impulsive trades.
-          </p>
+            <div className="fade-up-scroll delay-5">
+              <h2 className="fs-5 fw-bold mb-2">Do better with money</h2>
+              <p className="text-muted">
+                Through features like Trade-Guard and integrated risk alerts, we
+                actively encourage responsible decision-making.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="col-12 col-lg-6 p-4 text-center">
-          <img
-            src="media/images/ecosystem.png"
-            className="stats-img mb-3"
-          />
-          <div className="custom-links">
-            <a href="" className="d-block d-md-inline mx-md-3 mb-2 mb-md-0">
-              View All Asset Classes <i className="fa fa-long-arrow-right"></i>
-            </a>
-            <a href="" className="d-block d-md-inline mx-md-3">
-              Try Kito demo <i className="fa fa-long-arrow-right"></i>
-            </a>
+        {/* Right Column: Visual/Image */}
+        <div className="col-12 col-lg-6 text-center">
+          <div className="fade-up-scroll delay-3">
+            <div className="float-anim-2">
+              {" "}
+              {/* Using your floating keyframe */}
+              <img
+                src="media/images/ecosystem.png"
+                className="img-fluid stats-img mb-4"
+                alt="Ecosystem"
+                style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.08))" }}
+              />
+            </div>
+
+            <div className="custom-links mt-3">
+              <a href="#" className="hero-link mx-3">
+                View All Asset Classes{" "}
+                <i className="fa fa-long-arrow-right ms-2"></i>
+              </a>
+              <a href="#" className="hero-link mx-3">
+                Try Kito demo <i className="fa fa-long-arrow-right ms-2"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
