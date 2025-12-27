@@ -14,11 +14,14 @@ import Footer from './landing_page/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './landing_page/signup/Signup';
 
+import ScrollToTop from './ScrollToTop';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <ScrollToTop />
   <Navbar />
   <Routes>
     <Route path='/' element={<HomePage/>} />
