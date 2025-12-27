@@ -12,7 +12,6 @@ const Apps = () => {
               Enterprise-grade infrastructure for real-time market execution.
             </p>
           </div>
-          {/* aria-live makes screen readers announce status changes */}
           <div className="system-status" role="status" aria-live="polite">
             <span className="status-dot"></span>
             System Live: 12ms Latency
