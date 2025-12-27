@@ -8,156 +8,96 @@ const Signup = () => {
   };
 
   return (
-    <div className="signin-prompt-container min-vh-100 d-flex align-items-center justify-content-center bg-white p-3 p-md-5 py-5">
-      <div
-        className="container overflow-hidden my-auto"
-        style={{ maxWidth: "1000px" }}
-      >
-        <div className="row gap-lg-4 justify-content-center">
+    <div className="horizon-signup-wrapper min-vh-100 d-flex align-items-center justify-content-center p-3">
+      <div className="signup-glass-container container overflow-hidden">
+        <div className="row g-0 h-100">
           
-          <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-between p-5 bg-dark text-white position-relative rounded-5">
-            <div>
-              <div className="axis-logo-container mb-5">
-                <img
-                  src="/media/images/logo.png"
-                  className="img-fluid w-25 opacity-100"
-                  alt="logo"
-                />
+          {/* Left Panel: Branding & Stats */}
+          <div className="col-lg-5 d-none d-lg-flex flex-column justify-content-between p-5 branding-panel position-relative">
+            <div className="reveal delay-1">
+              <div className="brand-logo-circle mb-4">
+                <i className="fa-solid fa-layer-group fa-2x text-white"></i>
               </div>
-              <h1 className="display-5 fw-bold mb-4 pe-5">
-                Unlock the Future of Investing.
+              <h1 className="display-5 fw-bold text-white mb-3">
+                Experience <br />
+                <span className="text-blue-light">The Horizon.</span>
               </h1>
-              <p
-                className="text-secondary mb-5 lead pe-4"
-                style={{ fontSize: "1.1rem" }}
-              >
-                Access the most powerful trading infrastructure built for modern
-                global markets.
+              <p className="text-white-50 lead pe-4">
+                Institutional-grade infrastructure meets a minimalist design. 
+                Trade global markets with 0ms visual lag.
               </p>
             </div>
 
-            <div className="row g-3">
-              <div className="col-6">
-                <div className="bg-white text-dark p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
-                  <div className="d-flex align-items-center mb-2">
-                    <i className="bi bi-cpu-fill text-primary me-2"></i>
-                    <span className="fw-bold small">99.9% Uptime</span>
+            <div className="stats-grid reveal delay-3">
+              <div className="row g-3">
+                <div className="col-6">
+                  <div className="stat-pill">
+                    <i className="fa-solid fa-microchip mb-2"></i>
+                    <span className="d-block fw-bold">99.9%</span>
+                    <small className="text-white-50">Uptime</small>
                   </div>
-                  <small className="text-muted">Low-latency execution</small>
+                </div>
+                <div className="col-6">
+                  <div className="stat-pill">
+                    <i className="fa-solid fa-shield-halved mb-2"></i>
+                    <span className="d-block fw-bold">Excellent</span>
+                    <small className="text-white-50">Security</small>
+                  </div>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="bg-white text-dark p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
-                  <div className="d-flex align-items-center mb-2">
-                    <i className="bi bi-shield-lock-fill text-primary me-2"></i>
-                    <span className="fw-bold small">Direct Access</span>
+            </div>
+          </div>
+
+          {/* Right Panel: Action Area */}
+          <div className="col-lg-7 p-4 p-md-5 bg-white d-flex flex-column justify-content-center">
+            <div className="reveal delay-2">
+              <div className="mb-4">
+                <span className="badge-new mb-2">Secure Gateway</span>
+                <h2 className="fw-bold text-dark display-6 mb-2">Welcome Back</h2>
+                <p className="text-muted">
+                  Connect your <strong className="text-blue">Horizon Axis</strong> account to access your personalized trading dashboard.
+                </p>
+              </div>
+
+              <div className="feature-list-simple mb-5">
+                <div className="feature-item-small">
+                  <div className="icon-wrap-blue"><i className="fa-solid fa-check"></i></div>
+                  <div>
+                    <span className="fw-bold d-block">Zero-Lag Interface</span>
+                    <small className="text-muted">Built on the latest React architecture.</small>
                   </div>
-                  <small className="text-muted">Global markets</small>
+                </div>
+                <div className="feature-item-small">
+                  <div className="icon-wrap-blue"><i className="fa-solid fa-check"></i></div>
+                  <div>
+                    <span className="fw-bold d-block">Simulated Real-Time Data</span>
+                    <small className="text-muted">Test strategies with live streaming API feeds.</small>
+                  </div>
                 </div>
               </div>
-              <div className="col-12 text-center pt-4">
+
+              <div className="action-card p-4 rounded-4 border mb-4">
+                <p className="small text-muted mb-3">
+                  <i className="fa-solid fa-circle-info me-2 text-blue"></i>
+                  You are being redirected to our secure authentication server.
+                </p>
                 <button
                   onClick={handleSignInClick}
-                  className="btn btn-primary rounded-pill px-5 py-2 fw-bold opacity-75"
+                  className="btn-horizon-primary w-100 py-3 shadow-lg"
                 >
-                  Sign Up
+                  <i className="fa-solid fa-right-to-bracket me-2"></i>
+                  Enter Horizon Terminal
                 </button>
-                <div className="mt-2 small text-secondary opacity-50">
-                  Explore Dashboard
-                </div>
+              </div>
+
+              <div className="text-center">
+                <a href="#" className="text-decoration-none small text-muted hover-blue">
+                  New to Horizon? <span className="fw-bold text-blue">Explore Documentation</span>
+                </a>
               </div>
             </div>
           </div>
 
-          <div className="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center bg-white border rounded-5">
-            <div className="d-lg-none mb-4 text-center">
-              <img
-                src="/media/images/logo.png"
-                className="img-fluid w-25"
-                alt="logo"
-              />
-            </div>
-
-            <div className="mb-4">
-              <img
-                src="/media/images/logo.png"
-                className="img-fluid w-10 mb-3 d-none d-lg-block"
-                style={{ width: "40px" }}
-                alt="logo"
-              />
-              <h2 className="fw-bold h3 mb-2">
-                AXIS — Seamless Trading By Horizon
-              </h2>
-              <p className="text-muted">
-                This platform integrates with the Horizon login for secure
-                access to a powerful interface.
-              </p>
-            </div>
-
-            <div className="bg-light bg-opacity-50 p-4 rounded-4 mb-4">
-              <h6 className="fw-bold mb-3 small text-uppercase text-secondary tracking-wider">
-                Features
-              </h6>
-              <ul className="list-unstyled mb-0">
-                <li className="mb-3 d-flex align-items-center">
-                  <i className="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
-                  <div>
-                    <span className="fw-bold d-block small">Interface</span>
-                    <small className="text-muted">
-                      A clean, modern layout designed for speed.
-                    </small>
-                  </div>
-                </li>
-                <li className="mb-3 d-flex align-items-center">
-                  <i className="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
-                  <div>
-                    <span className="fw-bold d-block small">
-                      Simulated Data
-                    </span>
-                    <small className="text-muted">
-                      Visualize trends using real-time stock data.
-                    </small>
-                  </div>
-                </li>
-                <li className="d-flex align-items-center">
-                  <i className="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
-                  <div>
-                    <span className="fw-bold d-block small">
-                      Integrated Login
-                    </span>
-                    <small className="text-muted">
-                      Secure gateway via Axis authentication.
-                    </small>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-light p-3 rounded-4 mb-4 border-start border-primary border-5">
-              <p className="small text-muted mb-0">
-                <strong>Action Required:</strong> Click below to be securely
-                redirected to the Horizon login page.
-              </p>
-            </div>
-
-            <button
-              onClick={handleSignInClick}
-              className="btn btn-primary w-100 py-3 fw-bold rounded-pill mb-4 d-flex align-items-center justify-content-center gap-2"
-            >
-              <i className="bi bi-box-arrow-in-right fs-5"></i>
-              Sign In via Horizon Axis
-            </button>
-
-            <div className="text-center small text-muted">
-              New to the market?{" "}
-              <a
-                href="#"
-                className="fw-bold text-decoration-none text-primary border-bottom border-primary pb-1"
-              >
-                Learn how to get started
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
