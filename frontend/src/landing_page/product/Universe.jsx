@@ -7,118 +7,81 @@ function Universe() {
     window.location.href = DASHBOARD_SIGNUP_URL;
   };
 
+  const partners = [
+    {
+      img: "media/images/horizonWealth.svg",
+      title: "Horizon Wealth",
+      desc: "Our dedicated asset management arm, focusing on building high-quality, low-cost index funds.",
+    },
+    {
+      img: "media/images/alphaEngine.png",
+      title: "Alpha Engine",
+      desc: "Advanced quantitative platform for building and backtesting complex options strategies.",
+    },
+    {
+      img: "media/images/insightsPro.png",
+      title: "Insight Pro",
+      desc: "Institutional-grade research tools, fundamental analysis, and sector deep-dives.",
+    },
+    {
+      img: "media/images/strategyFlow.png",
+      title: "Strategy Flow",
+      desc: "Automate trade execution based on simple to highly complex technical indicators.",
+    },
+    {
+      img: "media/images/catalyst.png",
+      title: "Catalyst Portfolios",
+      desc: "Managed investment baskets curated to help you invest in market trends with one click.",
+    },
+    {
+      img: "media/images/protectMe.png",
+      title: "ProtectMe",
+      desc: "Personalized advisory for selecting the right life, health, and term insurance policies.",
+    },
+  ];
+
   return (
-    <div
-      className="container universe-container"
-      style={{
-        marginTop: "6rem",
-        lineHeight: "2",
-        fontSize: "1.05em",
-        maxWidth: "1140px",
-      }}
-    >
-      <div className="row text-center">
-        <h1 className="universe-title mb-4">The Horizon Universe</h1>
-        <p className="universe-intro">
-          Extend your Axis trading and investment experience even further with
-          our partner platforms and ecosystem.
+    <section className="universe-section py-5">
+      <div className="container py-5 text-center">
+        <div className="hero-badge mx-auto mb-3">The Ecosystem</div>
+        <h1 className="universe-main-title mb-3">
+          The Horizon <span className="text-gradient">Universe</span>
+        </h1>
+        <p className="universe-subtitle mb-5 mx-auto">
+          A seamless ecosystem of partner platforms designed to supercharge your
+          trading and investment experience.
         </p>
 
-        {/* Row 1 */}
-        <div className="row mt-4">
-          <div className="col-4 p-4">
-            <img
-              src="media/images/horizonWealth.svg"
-              className="img-fluid mb-3"
-              alt="Horizon Wealth"
-              style={{ maxHeight: "250px" }}
-            />
-            <p>
-              Horizon Wealth is our dedicated asset management arm, focusing on
-              building high-quality, low-cost index funds for long-term goal
-              planning.
-            </p>
-          </div>
-          <div className="col-4 p-4">
-            <img
-              src="media/images/alphaEngine.png"
-              alt="Alpha Engine"
-              className="mb-3"
-              style={{
-                maxHeight: "250px",
-              }}
-            />
-            <p>
-              Alpha Engine: An advanced quantitative platform for building,
-              backtesting, and paper trading complex options strategies without
-              writing a single line of code.
-            </p>
-          </div>
-          <div className="col-4 p-4">
-            <img
-              src="media/images/insightsPro.png"
-              className="img-fluid mb-3"
-              alt="Insights Pro"
-              style={{ maxHeight: "250px" }}
-            />
-            <p>
-              Insight Pro provides institutional-grade research tools,
-              fundamental analysis, competitive benchmarking, and comprehensive
-              sector deep-dives for informed decisions.
-            </p>
-          </div>
+        <div className="row g-4">
+          {partners.map((partner, index) => (
+            <div className="col-12 col-md-6 col-lg-4" key={index}>
+              <div className="universe-card">
+                <div className="card-image-box">
+                  <img
+                    src={partner.img}
+                    alt={partner.title}
+                    className="partner-logo"
+                  />
+                </div>
+                <div className="card-body-content">
+                  <h3 className="h5 fw-bold mb-2">{partner.title}</h3>
+                  <p className="small text-muted mb-0">{partner.desc}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Row 2 */}
-        <div className="row mt-4">
-          <div className="col-4 p-4">
-            <img
-              src="media/images/strategyFlow.png"
-              className="img-fluid mb-3"
-              alt="Strategy Flow"
-              style={{ maxHeight: "250px" }}
-            />
-            <p>
-              **Strategy Flow:** A visual systematic trading interface allowing
-              users to automate trade execution based on simple to highly
-              complex technical indicators.
-            </p>
-          </div>
-          <div className="col-4 p-4">
-            <img
-              src="media/images/catalyst.png"
-              className="img-fluid mb-3"
-              alt="Catalyst Portfolios"
-              style={{ maxHeight: "250px" }}
-            />
-            <p>
-              Catalyst Portfolios: Managed investment baskets and thematic
-              portfolios professionally curated to help you invest in market
-              trends with a single click.
-            </p>
-          </div>
-          <div className="col-4 p-4">
-            <img
-              src="media/images/protectMe.png"
-              className="img-fluid mb-3"
-              alt="ProtectMe"
-              style={{ maxHeight: "250px" }}
-            />
-            <p>
-              ProtectMe: Your personal advisory platform for objective,
-              personalized guidance on selecting the right life, health, and
-              term insurance policies.
-            </p>
-          </div>
+        <div className="mt-5 pt-4">
+          <button
+            onClick={handleSignInClick}
+            className="modern-signup-btn shadow-lg"
+          >
+            Create Free Account
+          </button>
         </div>
-        <button
-          onClick={handleSignInClick}
-          className="universe-btn p-2 btn fs-5 mb-5"
-        >
-          Sign up for free
-        </button>
       </div>
-    </div>
+    </section>
   );
 }
 

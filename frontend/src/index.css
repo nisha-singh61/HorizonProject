@@ -2197,3 +2197,271 @@ div.row .hero-img {
     width: auto;
   }
 }
+
+/* Product Section */
+/* Left Section */
+.product-section-wrapper {
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Background Decoration */
+.product-bg-glow {
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(61, 119, 205, 0.05) 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* Image Presentation */
+.product-image-container {
+  position: relative;
+  z-index: 1;
+}
+
+.main-product-img {
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.1));
+  border-radius: 12px;
+  max-width: 90%;
+}
+
+.image-shadow-accent {
+  position: absolute;
+  bottom: -15px;
+  left: 10%;
+  width: 80%;
+  height: 10px;
+  background: rgba(0,0,0,0.04);
+  filter: blur(10px);
+  border-radius: 50%;
+}
+
+/* Typography */
+.product-category-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #3d77cd;
+  background: rgba(61, 119, 205, 0.08);
+  padding: 4px 14px;
+  border-radius: 6px;
+  letter-spacing: 1px;
+}
+
+.product-display-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -1px;
+}
+
+.product-lead-text {
+  font-size: 1.1rem;
+  color: #475569;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+/* Action Elements */
+.product-action-row {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.modern-action-btn {
+  background: #0f172a; /* Dark professional theme */
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.modern-action-btn:hover {
+  background: #3d77cd;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(61, 119, 205, 0.2);
+  color: white;
+}
+
+.secondary-text-link {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+.secondary-text-link:hover {
+  color: #3d77cd;
+  border-color: #3d77cd;
+}
+
+/* Store Badges */
+.store-badge-row {
+  display: flex;
+  gap: 12px;
+}
+
+.badge-svg {
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.store-link:hover .badge-svg {
+  transform: scale(1.04);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+  .product-display-title { font-size: 2.4rem; }
+  .product-section-wrapper { text-align: center; }
+  .product-action-row { 
+    flex-direction: column; 
+    gap: 15px; 
+    align-items: center; 
+  }
+  .store-badge-row { justify-content: center; }
+  .product-lead-text { margin: 0 auto 2rem auto; }
+}
+
+/* Right Section */
+/* Add this to create a slight section distinction if they are stacked */
+.alternate-bg {
+  background-color: #fcfdfe;
+}
+
+/* Positioning the glow specifically for RightSection */
+.glow-right {
+  left: auto !important;
+  right: -5% !important;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.05) 0%, transparent 70%) !important;
+}
+
+/* Offset shadow for images on the right side */
+.right-side-shadow {
+  filter: drop-shadow(-20px 20px 50px rgba(0, 0, 0, 0.08)) !important;
+}
+
+/* Adjusting order for mobile responsiveness */
+@media (max-width: 991px) {
+  .order-2 {
+    order: 2 !important; /* Content stays below image on mobile */
+  }
+  .order-1 {
+    order: 1 !important; /* Image stays on top on mobile */
+  }
+  .product-content-box {
+    padding-right: 0 !important;
+  }
+}
+
+/* Universe Section */
+.universe-section {
+  background-color: #fdfdfe;
+  position: relative;
+}
+
+/* Typography & Titles */
+.universe-main-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #3d77cd, #6c5ce7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.universe-subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+}
+
+/* Partner Cards */
+.universe-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 2.5rem 1.5rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.universe-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(61, 119, 205, 0.1);
+  border-color: rgba(61, 119, 205, 0.2);
+}
+
+.card-image-box {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.partner-logo {
+  max-height: 100%;
+  max-width: 180px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.universe-card:hover .partner-logo {
+  transform: scale(1.08);
+}
+
+/* Button Styling */
+.modern-signup-btn {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.modern-signup-btn:hover {
+  background: #3d77cd;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(61, 119, 205, 0.3) !important;
+}
+
+/* Hero Badge (Reuse common style) */
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(61, 119, 205, 0.08);
+  color: #3d77cd;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Responsive Fixes */
+@media (max-width: 991px) {
+  .universe-main-title { font-size: 2.4rem; }
+  .universe-card { padding: 1.5rem; }
+}

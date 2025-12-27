@@ -10,33 +10,60 @@ function LeftSection({
   appStore,
 }) {
   return (
-    <div className="container left-section-container">
-      <div className="row align-items-center">
-        <div className="col-6 pe-5 text-center">
-          <img src={imageURL} className="img-fluid zoom-hover" />
-        </div>
-        <div className="col-6 p-3 mt-4">
-          <h1 className="product-title">{productName}</h1>
-          <p>{productDesription}</p>
-          <div className="custom-links">
-            <a href={tryDemo || "#"}>
-              Start Trading <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
-            <a href={learnMore || "#"}>
-              View Documentation <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-            </a>
+    <section className="product-section-wrapper py-5">
+      <div className="container py-lg-4">
+        {/* Subtle background glow for depth */}
+        <div className="product-bg-glow"></div>
+
+        <div className="row align-items-center g-5 position-relative">
+          {/* Image Column */}
+          <div className="col-12 col-lg-6 text-center">
+            <div className="product-image-container">
+              <img 
+                src={imageURL} 
+                className="img-fluid main-product-img" 
+                alt={productName} 
+              />
+              <div className="image-shadow-accent"></div>
+            </div>
           </div>
-          <div className="mt-3">
-            <a href={googlePlay}>
-              <img src="media/images/googlePlayBadge.svg" className="store-badge" />
-            </a>
-            <a href={appStore}>
-              <img src="media/images/appstoreBadge.svg" className="store-badge" />
-            </a>
+
+          {/* Content Column */}
+          <div className="col-12 col-lg-6">
+            <div className="product-content-box ps-lg-4">
+              <div className="product-category-tag mb-3">Market Tool</div>
+              
+              <h1 className="product-display-title mb-3">
+                {productName}
+              </h1>
+              
+              <p className="product-lead-text mb-4">
+                {productDesription}
+              </p>
+
+              <div className="product-action-row mb-5">
+                <a href={tryDemo || "#"} className="modern-action-btn">
+                  Start Trading
+                  <i className="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+                <a href={learnMore || "#"} className="secondary-text-link">
+                  View Documentation
+                </a>
+              </div>
+
+              <div className="store-badge-row">
+                <a href={googlePlay} className="store-link">
+                  <img src="media/images/googlePlayBadge.svg" className="badge-svg" alt="Google Play" />
+                </a>
+                <a href={appStore} className="store-link">
+                  <img src="media/images/appstoreBadge.svg" className="badge-svg" alt="App Store" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
