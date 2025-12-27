@@ -2,72 +2,24 @@ import React, { useState } from "react";
 
 function AccordionCard({ title, icon, children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const brandColor = "#3d77cd";
 
   return (
-    <div
-      className={`card border-0 rounded-4 mb-3 transition-all ${
-        isOpen || isHovered ? "shadow" : "shadow-sm"
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        cursor: "pointer",
-        transition: "all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-        transform: isHovered
-          ? "scale(1.03)"
-          : isOpen
-          ? "translateY(-5px)"
-          : "scale(1)",
-        zIndex: isHovered ? 2 : 1,
-        border: isHovered ? `1px solid ${brandColor}` : "1px solid transparent",
-      }}
-    >
-      <div
-        className="card-body p-4 d-flex justify-content-between align-items-center"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+    <div className={`support-topic-card ${isOpen ? "is-open" : ""}`}>
+      <div className="card-header-action" onClick={() => setIsOpen(!isOpen)}>
         <div className="d-flex align-items-center gap-3">
-          <div
-            className="rounded-circle d-flex align-items-center justify-content-center"
-            style={{
-              width: "48px",
-              height: "48px",
-              backgroundColor: isHovered ? brandColor : "#f0f5ff",
-              transition: "all 0.3s ease",
-            }}
-          >
-            <i
-              className={`${icon} fs-5`}
-              style={{
-                color: isHovered ? "#ffffff" : brandColor,
-                transition: "color 0.3s ease",
-              }}
-            ></i>
+          <div className="icon-box-modern">
+            <i className={`${icon}`}></i>
           </div>
-          <h6
-            className="mb-0 fw-bold"
-            style={{
-              color: isHovered ? brandColor : "#212529",
-              transition: "color 0.3s ease",
-            }}
-          >
-            {title}
-          </h6>
+          <h3 className="topic-title">{title}</h3>
         </div>
         <i
-          className={`fa fa-chevron-${isOpen ? "up" : "down"} small`}
-          style={{
-            color: isHovered ? brandColor : "#6c757d",
-            transition: "all 0.3s ease",
-          }}
+          className={`fa-solid fa-angle-${isOpen ? "up" : "down"} toggle-icon`}
         ></i>
       </div>
 
       {isOpen && (
-        <div className="card-footer bg-white border-0 px-4 pb-4 pt-0">
-          <div className="border-top pt-3">{children}</div>
+        <div className="card-body-expandable">
+          <div className="content-inner">{children}</div>
         </div>
       )}
     </div>
@@ -75,109 +27,82 @@ function AccordionCard({ title, icon, children }) {
 }
 
 function CreateTicket() {
-  const brandColor = "#3d77cd";
-
   const categories = [
-    { t: "Account Setup", i: "fa fa-plus-circle" },
-    { t: "Portfolio & Console", i: "fa fa-desktop" },
-    { t: "Horizon Terminal", i: "fa fa-paper-plane" },
-    { t: "Wallet & Funds", i: "fa fa-wallet" },
-    { t: "Mutual Funds", i: "fa fa-coins" },
-    { t: "Profile & Security", i: "fa fa-shield-halved" },
+    { t: "Account Setup", i: "fa-solid fa-user-plus" },
+    { t: "Portfolio & Console", i: "fa-solid fa-chart-line" },
+    { t: "Horizon Terminal", i: "fa-solid fa-terminal" },
+    { t: "Wallet & Funds", i: "fa-solid fa-wallet" },
+    { t: "Mutual Funds", i: "fa-solid fa-vault" },
+    { t: "Security", i: "fa-solid fa-shield-halved" },
   ];
 
   return (
-    <div className="container-fluid py-5 bg-light min-vh-100 font-sans-serif">
-      <style>
-        {`
-          @keyframes bell-ring {
-            0% { transform: rotate(0); }
-            10% { transform: rotate(15deg); }
-            20% { transform: rotate(-15deg); }
-            30% { transform: rotate(10deg); }
-            40% { transform: rotate(-10deg); }
-            50% { transform: rotate(0); }
-            100% { transform: rotate(0); }
-          }
-          .ringing-bell {
-            display: inline-block;
-            animation: bell-ring 2s infinite;
-            transform-origin: top center;
-          }
-        `}
-      </style>
+    <div className="support-hub-wrapper py-5">
+      <div className="container">
+        {/* Modern Header Segment */}
+        <div className="row mb-5 align-items-end">
+          <div className="col-lg-7">
+            <div className="hub-badge mb-2">Help Center</div>
+            <h1 className="hub-display-title">
+              How can we <span className="text-gradient">assist you?</span>
+            </h1>
+          </div>
+          <div className="col-lg-5 text-lg-end d-none d-lg-block">
+            <p className="text-muted small mb-0">
+              Average response time: <strong>&lt; 15 mins</strong>
+            </p>
+          </div>
+        </div>
 
-      <div className="container" style={{ maxWidth: "1200px" }}>
         <div className="row g-4">
-          <div className="col-lg-8">
-            <div className="d-flex align-items-center justify-content-between mb-4">
-              <h4 className="fw-bold mb-0" style={{ color: "#1a1d23" }}>
-                Topic Categories
-              </h4>
-              <span
-                className="badge rounded-pill px-3 py-2 fw-medium"
-                style={{ backgroundColor: "#e0eaff", color: brandColor }}
-              >
-                6 Active Major Segments
-              </span>
-            </div>
-
-            <div className="row row-cols-1 row-cols-md-2 g-3">
+          {/* Main Content Area */}
+          <div className="col-lg-8 order-2 order-lg-1">
+            <div className="topic-grid">
               {categories.map((item, index) => (
-                <div className="col" key={index}>
-                  <AccordionCard title={item.t} icon={item.i}>
-                    <ul className="list-unstyled mb-0 small text-muted">
-                      <li className="py-2 border-bottom border-light-subtle">
-                        <a href="#" className="text-decoration-none text-muted">
-                          General Inquiry
-                        </a>
-                      </li>
-                      <li className="py-2">
-                        <a href="#" className="text-decoration-none text-muted">
-                          Technical Support
-                        </a>
-                      </li>
-                    </ul>
-                  </AccordionCard>
-                </div>
+                <AccordionCard key={index} title={item.t} icon={item.i}>
+                  <ul className="support-link-list">
+                    <li>
+                      <a href="#">General Onboarding Guide</a>
+                    </li>
+                    <li>
+                      <a href="#">Technical troubleshooting</a>
+                    </li>
+                    <li>
+                      <a href="#">Commonly Asked Questions</a>
+                    </li>
+                  </ul>
+                </AccordionCard>
               ))}
             </div>
           </div>
 
-          <div className="col-lg-4">
-            {/* Sidebar Notices */}
-            <div className="card border-0 rounded-4 bg-white shadow-sm mb-4 overflow-hidden">
-              <div
-                className="p-3 text-white fw-bold d-flex align-items-center justify-content-between"
-                style={{ backgroundColor: brandColor }}
-              >
-                <span>Market Notices</span>
-                <i className="fa fa-bell ringing-bell"></i>
-              </div>
-              <div className="card-body">
-                <div className="alert border-0 bg-light rounded-3 small py-2 mb-3">
-                  <span className="badge bg-danger me-2">LIVE</span>
-                  Surveillance scrips – Dec 2025
+          {/* Glass-Effect Sidebar */}
+          <div className="col-lg-4 order-1 order-lg-2">
+            <div className="sticky-sidebar">
+              <div className="notice-card mb-4">
+                <div className="notice-header">
+                  <h5>Live Alerts</h5>
+                  <div className="pulse-dot"></div>
                 </div>
-                <div className="alert border-0 bg-light rounded-3 small py-2 mb-0">
-                  <i className="fa fa-info-circle me-2 text-muted"></i>
-                  Rights Entitlements updates
+                <div className="notice-body">
+                  <div className="alert-item">
+                    <span className="type">NSE</span>
+                    <p>Surveillance scrips updated for Dec 2025</p>
+                  </div>
+                  <div className="alert-item">
+                    <span className="type info">INFO</span>
+                    <p>Rights Entitlements updates</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Support Action */}
-            <div className="card border-0 rounded-4 bg-white shadow-sm p-4 text-center">
-              <h6 className="fw-bold mb-3">Don't see your topic?</h6>
-              <p className="small text-muted mb-4">
-                Our support team is available 24/7 to help you with any queries.
-              </p>
-              <button
-                className="btn py-2 w-100 rounded-3 fw-bold text-white shadow-sm"
-                style={{ backgroundColor: brandColor }}
-              >
-                Open New Ticket
-              </button>
+              <div className="cta-support-card p-4">
+                <h4>Can't find an answer?</h4>
+                <p>Talk to our human support team directly.</p>
+                <button className="modern-btn-primary w-100 mt-2">
+                  Open Support Ticket
+                </button>
+              </div>
             </div>
           </div>
         </div>
