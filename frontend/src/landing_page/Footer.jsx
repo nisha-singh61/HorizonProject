@@ -1,177 +1,109 @@
 import React from "react";
 
 function Footer() {
+  const brandBlue = "#3d77cd";
+
   return (
-    <footer style={{ backgroundColor: "rgb(250, 250, 250)" }}>
-      <div className="container-fluid border-top mt-5">
-        <div className="container px-3 px-md-5">
-          <div className="row mt-5">
-            <div className="col">
-              <img
-                src="media/images/logo.svg"
-                style={{ width: "70%" }}
-                alt="Demo Project Logo"
-              />
-              <p className="mt-2 text-muted" style={{ fontSize: "13px" }}>
-                &copy; 2025, MERN Dashboard Demo. All rights reserved.
+    <footer className="footer-wrapper border-top pt-5 pb-3">
+      <div className="container px-4">
+        <div className="row gy-4">
+          
+          {/* Brand and Socials */}
+          <div className="col-lg-3 col-md-12">
+            <img
+              src="media/images/logo.svg"
+              className="footer-logo mb-3"
+              alt="Logo"
+            />
+            <p className="text-muted small mb-4">
+              &copy; 2025, Horizon MERN Dashboard.<br />
+              Built with precision for the next generation.
+            </p>
+            <div className="d-flex gap-3">
+              <a href="#"><i className="fa-brands fa-x-twitter social-icon"></i></a>
+              <a href="#"><i className="fa-brands fa-linkedin-in social-icon"></i></a>
+              <a href="#"><i className="fa-brands fa-github social-icon"></i></a>
+              <a href="#"><i className="fa-brands fa-youtube social-icon"></i></a>
+            </div>
+          </div>
+
+          {/* Links Column 1 */}
+          <div className="col-lg-2 col-6 col-md-3">
+            <h6 className="footer-heading">Account</h6>
+            <div className="d-flex flex-column">
+              <a href="#" className="footer-link">User Profile</a>
+              <a href="#" className="footer-link">Watchlist</a>
+              <a href="#" className="footer-link">Order History</a>
+              <a href="#" className="footer-link">Portfolio</a>
+            </div>
+          </div>
+
+          {/* Links Column 2 */}
+          <div className="col-lg-2 col-6 col-md-3">
+            <h6 className="footer-heading">Support</h6>
+            <div className="d-flex flex-column">
+              <a href="#" className="footer-link">Documentation</a>
+              <a href="#" className="footer-link">Report a Bug</a>
+              <a href="#" className="footer-link">GitHub Source</a>
+              <a href="#" className="footer-link">Updates</a>
+            </div>
+          </div>
+
+          {/* Links Column 3 */}
+          <div className="col-lg-2 col-6 col-md-3">
+            <h6 className="footer-heading">Company</h6>
+            <div className="d-flex flex-column">
+              <a href="#" className="footer-link">About Project</a>
+              <a href="#" className="footer-link">Tech Stack</a>
+              <a href="#" className="footer-link">Dev Journey</a>
+              <a href="#" className="footer-link">Contact</a>
+            </div>
+          </div>
+
+          {/* Links Column 4 */}
+          <div className="col-lg-3 col-6 col-md-3">
+            <h6 className="footer-heading">Quick Links</h6>
+            <div className="d-flex flex-column">
+              <a href="#" className="footer-link">Market Overview</a>
+              <a href="#" className="footer-link">Trading Rules</a>
+              <a href="#" className="footer-link">Calculators</a>
+              <a href="#" className="footer-link">Sectors</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Disclaimer Section */}
+        
+        <div className="row mt-5">
+          <div className="col-12">
+            <div className="disclaimer-box shadow-sm">
+              <p className="fw-bold text-danger mb-2">
+                <i className="fa-solid fa-triangle-exclamation me-2"></i>
+                EDUCATIONAL DEMONSTRATION ONLY
               </p>
-              <div
-                className="d-flex gap-4 mb-3 footer-icons"
-                style={{ fontSize: "20px" }}
-              >
-                <i className="fa-brands fa-x-twitter"></i>
-                <i className="fa-brands fa-square-facebook"></i>
-                <i className="fa-brands fa-instagram"></i>
-                <i className="fa-brands fa-linkedin-in"></i>
-              </div>
-              <div
-                className="border-top d-flex gap-4 pt-3 footer-icons"
-                style={{ fontSize: "20px" }}
-              >
-                <i className="fa-brands fa-youtube"></i>
-                <i className="fa-brands fa-whatsapp"></i>
-                <i className="fa-brands fa-telegram"></i>
-              </div>
-            </div>
-            <div className="ol-12 col-md-6 col-lg-2 footer-links text-muted">
-              <p style={{ fontWeight: 500, fontSize: "20px" }}>Account</p>
-              <a href="">User Profile</a>
-              <br />
-              <a href="">Watchlist Settings</a>
-              <br />
-              <a href="">Order History</a>
-              <br />
-              <a href="">Simulated Portfolio</a>
-              <br />
-              <a href="">Trade Blotter</a>
-              <br />
-              <a href="">Fund Simulation</a>
-              <br />
-              <a href="">Project Features</a>
-              <br />
-              <a href="">User Guides</a>
-              <br />
-            </div>
-            {/* 5. CHANGED: Link text to be generic/project-focused */}
-            <div className="col footer-links text-muted">
-              <p style={{ fontWeight: 500, fontSize: "20px" }}>Support</p>
-              <a href="">Project Contact</a>
-              <br />
-              <a href="">Documentation</a>
-              <br />
-              <a href="">Report a Bug</a>
-              <br />
-              <a href="">Feature Requests</a>
-              <br />
-              <a href="">Version History</a>
-              <br />
-              <a href="">Updates & Patches</a>
-              <br />
-              <a href="">Technology Blog</a>
-              <br />
-              <a href="">Source Code (GitHub)</a>
-              <br />
-            </div>
-            <div className="col footer-links text-muted">
-              <p style={{ fontWeight: 500, fontSize: "20px" }}>Company</p>
-              <a href="">About This Project</a>
-              <br />
-              <a href="">My Development Philosophy</a>
-              <br />
-              <a href="">Press/Media (My Portfolio)</a>
-              <br />
-              <a href="">Technologies Used</a>
-              <br />
-              <a href="">Development Journey (Blog)</a>
-              <br />
-              <a href="">MERN Stack Skills</a>
-              <br />
-              <a href="">Open Source Libraries Used</a>
-              <br />
-            </div>
-            <div className="col footer-links text-muted">
-              <p style={{ fontWeight: 500, fontSize: "20px" }}>Quick links</p>
-              <a href="">Market Overview</a>
-              <br />
-              <a href="">Simulated Trading Rules</a>
-              <br />
-              <a href="">Data Source Note</a>
-              <br />
-              <a href="">Simulated Economic Events</a>
-              <br />
-              <a href="">Financial Calculators</a>
-              <br />
-              <a href="">Stock Indexes</a>
-              <br />
-              <a href="">Sectors & Industries</a>
-              <br />
+              <p className="mb-2">
+                This MERN stack application is a non-commercial portfolio project. All stock data and 
+                financial executions are <strong>simulated</strong>. This project is not affiliated 
+                with Zerodha, NSE, or any financial body.
+              </p>
+              <p className="mb-0">
+                <strong>Developer:</strong> Nisha Singh Kushwaha | 
+                <a href="mailto:nishakuswaha2004@gmail.com" className="text-decoration-none ms-1" style={{color: brandBlue}}>
+                  nishakuswaha2004@gmail.com
+                </a>
+              </p>
             </div>
           </div>
-          <div
-            className="mt-5 text-muted"
-            style={{ fontSize: "10px", lineHeight: "2.1" }}
-          >
-            <p style={{ fontWeight: 700, fontSize: "12px", color: "red" }}>
-              *** IMPORTANT DISCLAIMER FOR EDUCATIONAL DEMONSTRATION ***
-            </p>
+        </div>
 
-            <p>
-              This application is a non-commercial project built using the MERN
-              stack (MongoDB, Express.js, React, Node.js) for educational and
-              portfolio demonstration purposes only. All data shown on this
-              platform, including stock prices, portfolio values, and order
-              executions, is simulated or sourced from a non-live data API and
-              should be treated as hypothetical.
-            </p>
-
-            <p>
-              This project is **NOT** affiliated with, endorsed by, or sponsored
-              by Zerodha Broking Limited, the National Stock Exchange (NSE), the
-              Bombay Stock Exchange (BSE), or any financial regulatory body. Do
-              not use this application for actual trading or investment
-              decisions. The look and feel are inspired by modern trading
-              platforms but do not represent any specific live broker's
-              interface.
-            </p>
-
-            <p>
-              **Developer Contact:** For inquiries regarding this project,
-              please contact [Nisha Singh Kushwaha/nishakuswaha2004@gmail.com].
-            </p>
-          </div>
-          <div
-            className="container container px-3 px-md-5"
-            style={{ fontSize: "13px" }}
-          >
-            <ul className="d-flex flex-wrap list-unstyled gap-3 justify-content-center justify-content-md-start">
-              <li className="">
-                <a className="down-links">Data Sources</a>
-              </li>
-              <li className="">
-                <a className="down-links">Tech Stack</a>
-              </li>
-              <li className="">
-                <a className="down-links">API Policy</a>
-              </li>
-              <li className="">
-                <a className="down-links">Terms of Use (Demo)</a>
-              </li>
-              <li className="">
-                <a className="down-links">Project Privacy Note</a>
-              </li>
-              <li className="">
-                <a className="down-links">Simulator Rules</a>
-              </li>
-              <li className="">
-                <a className="down-links">Accessibility Statement</a>
-              </li>
-              <li className="">
-                <a className="down-links">For Reviewer's Attention</a>
-              </li>
-              <li className="">
-                <a className="down-links">Project Roadmap</a>
-              </li>
-            </ul>
+        {/* Final Bottom Bar */}
+        <div className="mt-5 pt-3 border-top text-center">
+          <div className="d-flex flex-wrap justify-content-center gap-4">
+            <a href="#" className="bottom-link">Data Sources</a>
+            <a href="#" className="bottom-link">API Policy</a>
+            <a href="#" className="bottom-link">Privacy Note</a>
+            <a href="#" className="bottom-link">Accessibility</a>
+            <a href="#" className="bottom-link">Roadmap</a>
           </div>
         </div>
       </div>

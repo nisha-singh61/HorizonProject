@@ -2,64 +2,71 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
+  const DASHBOARD_SIGNUP_URL = import.meta.env.VITE_DASHBOARD_SIGNUP_URL;
   return (
-    <nav
-      className="navbar navbar-expand-lg border-bottom"
-      style={{ backgroundColor: "#FFF" }}
-    >
-      <div className="container p-2">
-        <NavLink className="navbar-brand" to="/">
-          <img
-            src="media/images/logo.svg"
-            style={{ width: "130px", height:"auto" }}
-            alt="Logo"
-          />
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink to="/signup" className="nav-link">
-                Signup
+    <div className="navbar-floating-wrapper sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-island shadow-lg">
+        <div className="container-fluid px-lg-4">
+          <NavLink className="navbar-brand" to="/">
+            <img
+              src="media/images/logo.svg"
+              style={{ width: "110px" }}
+              alt="Logo"
+            />
+          </NavLink>
+
+          <button
+            className="navbar-toggler border-0 shadow-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navIslandContent"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navIslandContent">
+            <ul className="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-2">
+              <li className="nav-item">
+                <NavLink to="/about" className="nav-link-island">
+                  About
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/product" className="nav-link-island">
+                  Products
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/pricing" className="nav-link-island">
+                  Pricing
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/support" className="nav-link-island">
+                  Support
+                </NavLink>
+              </li>
+            </ul>
+
+            <div className="d-flex align-items-center gap-3">
+              <a
+                href={DASHBOARD_SIGNUP_URL}
+                className="btn btn-link text-decoration-none fw-bold text-muted px-3 login-btn-hover"
+              >
+                Login
+              </a>
+
+              <NavLink
+                to="/signup"
+                className="btn btn-brand-cta rounded-pill px-4 shadow-sm"
+              >
+                Get Started
               </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/about" className="nav-link">
-                About
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/product" className="nav-link">
-                Products
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/pricing" className="nav-link">
-                Pricing
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/support" className="nav-link">
-                Support
-              </NavLink>
-            </li>
-          </ul>
-          <div className="d-none d-lg-block text-2xl mt-2 mx-4">
-            <i className="fa-solid fa-bars" style={{ fontSize: "22px", cursor: "pointer" }}></i>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 
