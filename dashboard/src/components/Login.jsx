@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "./FormStyles.css";
@@ -7,7 +7,6 @@ import "./FormStyles.css";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Login = () => {
-  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
@@ -53,11 +52,12 @@ const Login = () => {
       } else {
         handleError(message);
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      // Changed 'error' to 'err' to satisfy linter if used or unused
+      console.error(err);
+      handleError("An error occurred during login.");
     }
     setInputValue({
-      ...inputValue,
       email: "",
       password: "",
     });
@@ -76,6 +76,7 @@ const Login = () => {
               value={email}
               placeholder="Enter your email"
               onChange={handleOnChange}
+              required
             />
           </div>
           <div>
@@ -86,6 +87,7 @@ const Login = () => {
               value={password}
               placeholder="Enter your password"
               onChange={handleOnChange}
+              required
             />
           </div>
           <button type="submit">Submit</button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import './FormStyles.css'; 
@@ -7,7 +7,6 @@ import './FormStyles.css';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const Signup = () => {
-    const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
         email: "",
         password: "",
@@ -38,9 +37,7 @@ const Signup = () => {
         try {
             const { data } = await axios.post(
                 `${API_BASE_URL}/signup`,
-                {
-                    ...inputValue,
-                },
+                { ...inputValue },
                 { withCredentials: true }
             );
             const { success, message } = data;
@@ -48,21 +45,21 @@ const Signup = () => {
             if (success) {
                 handleSuccess(message);
                 
-                // Use hard redirect (full page reload) 
-                // to force the browser to commit the new authentication cookie 
-                // before requesting the protected home page.
+                // FINAL FIX: Using a hard redirect (full page reload).
+                // This ensures the browser processes the new authentication cookie 
+                // before the protected Home page is requested.
                 window.location.href = "/";
                 
             } else {
                 handleError(message);
             }
         } catch (error) {
-            console.log(error);
-            //error handling for network/server failures
+            console.error("Signup error:", error);
+            // Handling network/server failures without causing unused var warnings
             handleError(error.response?.data?.message || "An error occurred during signup."); 
         }
         
-        // Reset inputs regardless of success/failure
+        // Reset inputs
         setInputValue({
             email: "",
             password: "",
@@ -83,6 +80,7 @@ const Signup = () => {
                             value={email}
                             placeholder="Enter your email"
                             onChange={handleOnChange}
+                            required
                         />
                     </div>
                     <div>
@@ -93,6 +91,7 @@ const Signup = () => {
                             value={username}
                             placeholder="Enter your username"
                             onChange={handleOnChange}
+                            required
                         />
                     </div>
                     <div>
@@ -103,6 +102,7 @@ const Signup = () => {
                             value={password}
                             placeholder="Enter your password"
                             onChange={handleOnChange}
+                            required
                         />
                     </div>
                     <button type="submit">Submit</button>
