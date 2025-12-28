@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Menu.css'; 
+import "./Menu.css";
 
 const Menu = ({ user, onLogout }) => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
+  // Back to horizon
+  const HORIZON_URL =
+    import.meta.env.VITE_HORIZON_URL || "http://localhost:5174";
+  const brandBlue = "#3d77cd";
+
+  const handleBackToHorizon = () => {
+    onLogout();
+    window.location.href = HORIZON_URL;
+  };
+
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
-    setIsProfileDropdownOpen(false); 
+    setIsProfileDropdownOpen(false);
   };
 
   const handleProfileClick = () => {
@@ -88,7 +98,7 @@ const Menu = ({ user, onLogout }) => {
             <Link
               style={{ textDecoration: "none" }}
               to="/apps"
-              onClick={() => handleMenuClick(5)} 
+              onClick={() => handleMenuClick(5)}
             >
               <p className={selectedMenu === 5 ? activeMenuClass : menuClass}>
                 Apps
@@ -97,13 +107,29 @@ const Menu = ({ user, onLogout }) => {
           </li>
         </ul>
         <hr />
-        
+
+        {/* Back to horizon logic */}
+        <div className="exit-section px-3 mb-2 mt-2">
+          <button
+            onClick={handleBackToHorizon}
+            className="btn btn-sm w-100 text-white shadow-sm"
+            style={{
+              backgroundColor: brandBlue,
+              borderRadius: "8px",
+              border: "none",
+              padding: "8px",
+            }}
+          >
+            <i className="fa-solid fa-arrow-left me-2"></i> Exit to Horizon
+          </button>
+        </div>
+
         {/* Profile and Logout Section */}
         <div className="profile" onClick={handleProfileClick}>
           <div className="avatar">ZU</div>
           {/* Use the 'user' prop for the username display */}
           <p className="username">{user || "USERID"}</p>
-          
+
           {/* Profile Dropdown (visible when isProfileDropdownOpen is true) */}
           {isProfileDropdownOpen && (
             <div className="dropdown">
