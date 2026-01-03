@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const express = require("express");
-app.set("trust proxy", 1);
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -25,6 +24,8 @@ const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
 const HORIZON_FRONTEND_ORIGIN = process.env.HORIZON_FRONTEND_ORIGIN;
 
 const app = express();
+
+app.set("trust proxy", 1);
 
 //Middleware Setup
 app.use(
