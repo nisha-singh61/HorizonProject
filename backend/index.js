@@ -13,8 +13,7 @@ const { OrdersModel } = require("./model/OrdersModel");
 const { WatchlistModel } = require("./model/WatchlistModel");
 
 
-const defaultWatchlistModule = require("../dashboard/src/data/defaultWatchlist"); 
-const defaultWatchlist = defaultWatchlistModule ? defaultWatchlistModule.default : [];
+const defaultWatchlist = require("./data/defaultWatchlist") || [];
 
 const { userVerification } = require("./Middlewares/AuthMiddleware");
 const authRoute = require("./Routes/AuthRoute");

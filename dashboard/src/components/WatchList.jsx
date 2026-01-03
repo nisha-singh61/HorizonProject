@@ -1,10 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-
 import GeneralContext from "./GeneralContext";
-
 import { Tooltip, Grow } from "@mui/material";
-
 import {
   BarChartOutlined,
   KeyboardArrowDown,
@@ -12,41 +9,36 @@ import {
   MoreHoriz,
 } from "@mui/icons-material";
 
-// Local data imported for initial state or fallback
+// Local fallback data (keep a copy in dashboard/src/data/defaultWatchlist.js)
 import defaultWatchlist from "../data/defaultWatchlist";
 import { DoughnutChart } from "./DoughnoutChart";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const WatchList = () => {
-  // Initialize state with an empty array.
   const [userWatchlist, setUserWatchlist] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect to fetch the user's watchlist on component load
   useEffect(() => {
     const fetchWatchlist = async () => {
       setIsLoading(true);
       try {
+        // withCredentials: true is vital for sending the JWT cookie to Render
         const response = await axios.get(`${API_BASE_URL}/myWatchlist`, {
           withCredentials: true,
         });
 
-        // CRITICAL DEFENSIVE CHECK: Handle different API response formats
-        // Prioritize data.data, then response.data, otherwise empty array
-        const fetchedData =
-          response.data && Array.isArray(response.data.data)
-            ? response.data.data
-            : response.data;
+        // Backend returns the array directly or inside response.data
+        const fetchedData = response.data;
 
-        // Set state only if it is a confirmed array, otherwise use local fallback
-        // NOTE: If the API returns an empty array, it will still use the empty array.
         setUserWatchlist(
-          Array.isArray(fetchedData) ? fetchedData : defaultWatchlist
+          Array.isArray(fetchedData) && fetchedData.length > 0
+            ? fetchedData
+            : defaultWatchlist
         );
       } catch (error) {
-        console.error("Error fetching watchlist:", error);
-        // On error, use the local defaultWatchlist as a fallback
+        console.error("Error fetching watchlist from backend:", error);
+        // Fallback to local data if backend fails
         setUserWatchlist(defaultWatchlist);
       } finally {
         setIsLoading(false);
@@ -56,19 +48,14 @@ const WatchList = () => {
     fetchWatchlist();
   }, []);
 
-  // DEFENSIVE DATA DERIVATION: Ensure userWatchlist is an array before calling map
-  const isWatchlistArray = Array.isArray(userWatchlist);
-
-  const labels = isWatchlistArray
-    ? userWatchlist.map((stock) => stock["name"])
-    : [];
-
-  const data = {
+  // Prepare data for Doughnut Chart
+  const labels = userWatchlist.map((stock) => stock.name);
+  const chartData = {
     labels,
     datasets: [
       {
         label: "Price",
-        data: isWatchlistArray ? userWatchlist.map((stock) => stock.price) : [],
+        data: userWatchlist.map((stock) => stock.price),
         backgroundColor: [
           "rgba(255, 99, 132, 0.5)",
           "rgba(54, 162, 235, 0.5)",
@@ -93,16 +80,9 @@ const WatchList = () => {
   if (isLoading) {
     return (
       <div className="watchlist-container">
-        <p>Loading your personal watchlist...</p>
-      </div>
-    );
-  }
-
-  // Show empty message only if data is loaded but is an empty array
-  if (!isLoading && userWatchlist.length === 0) {
-    return (
-      <div className="watchlist-container">
-        <p>Your watchlist is empty. Try adding some stocks!</p>
+        <div className="loader">
+          <p>Syncing with market data...</p>
+        </div>
       </div>
     );
   }
@@ -114,38 +94,32 @@ const WatchList = () => {
           type="text"
           name="search"
           id="search"
-          placeholder="Search eg:infy, bse, nifty fut weekly, gold mcx"
+          placeholder="Search eg: infy, bse, nifty fut, gold mcx"
           className="search"
         />
         <span className="counts"> {userWatchlist.length} / 50</span>
       </div>
 
       <ul className="list">
-        {userWatchlist.map((stock) => {
-          return <WatchListItem stock={stock} key={stock.name} />;
-        })}
+        {userWatchlist.map((stock, index) => (
+          <WatchListItem stock={stock} key={index} />
+        ))}
       </ul>
 
-      <DoughnutChart data={data} />
+      {/* Only render chart if we have data */}
+      {userWatchlist.length > 0 && <DoughnutChart data={chartData} />}
     </div>
   );
 };
 
-export default WatchList;
-
 const WatchListItem = ({ stock }) => {
   const [showWatchlistActions, setShowWatchlistActions] = useState(false);
 
-  const handleMouseEnter = () => {
-    setShowWatchlistActions(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowWatchlistActions(false);
-  };
-
   return (
-    <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <li
+      onMouseEnter={() => setShowWatchlistActions(true)}
+      onMouseLeave={() => setShowWatchlistActions(false)}
+    >
       <div className="item">
         <p className={stock.isDown ? "down" : "up"}>{stock.name}</p>
         <div className="itemInfo">
@@ -155,24 +129,16 @@ const WatchListItem = ({ stock }) => {
           ) : (
             <KeyboardArrowUp className="up" />
           )}
-          <span className="price">{stock.price}</span>
+          <span className="price">{stock.price.toLocaleString()}</span>
         </div>
       </div>
-      {showWatchlistActions && <WatchListActions uid={stock.name} />}
+      {showWatchlistActions && <WatchListActions stockName={stock.name} />}
     </li>
   );
 };
 
-const WatchListActions = ({ uid }) => {
+const WatchListActions = ({ stockName }) => {
   const generalContext = useContext(GeneralContext);
-
-  const handleBuyClick = () => {
-    generalContext.openBuyWindow(uid);
-  };
-
-  const handleSellClick = () => {
-    generalContext.openSellWindow(uid);
-  };
 
   return (
     <span className="actions">
@@ -182,9 +148,13 @@ const WatchListActions = ({ uid }) => {
           placement="top"
           arrow
           slots={{ transition: Grow }}
-          onClick={handleBuyClick}
         >
-          <button className="buy">Buy</button>
+          <button
+            className="buy"
+            onClick={() => generalContext.openBuyWindow(stockName)}
+          >
+            Buy
+          </button>
         </Tooltip>
 
         <Tooltip
@@ -192,9 +162,13 @@ const WatchListActions = ({ uid }) => {
           placement="top"
           arrow
           slots={{ transition: Grow }}
-          onClick={handleSellClick}
         >
-          <button className="sell">Sell</button>
+          <button
+            className="sell"
+            onClick={() => generalContext.openSellWindow(stockName)}
+          >
+            Sell
+          </button>
         </Tooltip>
 
         <Tooltip
@@ -207,6 +181,7 @@ const WatchListActions = ({ uid }) => {
             <BarChartOutlined className="icon" />
           </button>
         </Tooltip>
+
         <Tooltip
           title="More"
           placement="top"
@@ -221,3 +196,5 @@ const WatchListActions = ({ uid }) => {
     </span>
   );
 };
+
+export default WatchList;

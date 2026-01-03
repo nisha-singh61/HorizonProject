@@ -16,16 +16,19 @@ module.exports.Signup = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       path: "/",
-      sameSite: "Lax",
       maxAge: 3600000,
+      secure: true,
+      sameSite: "None",
+      
     });
 
     // 2. Client-Readable Marker (For client-side existence check)
     res.cookie("isLoggedIn", "true", {
       httpOnly: false,
       path: "/",
-      sameSite: "Lax",
       maxAge: 3600000,
+      secure: true,
+      sameSite: "None",
     });
 
     res
@@ -66,16 +69,18 @@ module.exports.Login = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true, // CRITICAL SECURITY
       path: "/",
-      sameSite: "Lax",
       maxAge: 3600000,
+      secure: true,
+      sameSite: "None",
     });
 
     // 2. Client-Readable Marker (For client-side existence check)
     res.cookie("isLoggedIn", "true", {
       httpOnly: false,
       path: "/",
-      sameSite: "Lax",
       maxAge: 3600000,
+      secure: true,
+      sameSite: "None",
     });
 
     res.status(201).json({
