@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie"; // Import js-cookie to fix the "undefined" error
 import "./FormStyles.css";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -21,46 +22,45 @@ const Login = () => {
     });
   };
 
-  const handleError = (err) =>
-    toast.error(err, {
-      position: "bottom-left",
-    });
+  const handleError = (err) => toast.error(err, { position: "bottom-left" });
 
   const handleSuccess = (msg) =>
-    toast.success(msg, {
-      position: "bottom-left",
-    });
+    toast.success(msg, { position: "bottom-left" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
         `${API_BASE_URL}/login`,
-        {
-          ...inputValue,
-        },
+        { ...inputValue },
         { withCredentials: true }
       );
-      console.log(data);
+
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
 
-        // FINAL FIX: Use a hard redirect (full page reload)
-        // This guarantees the browser has processed the cookie before requesting the new page.
-        window.location.href = "/";
+        // FIX: Manually set the isLoggedIn cookie for the Vercel domain
+        // This bypasses the cross-site "undefined" issue found in your logs
+        Cookies.set("isLoggedIn", "true", {
+          expires: 1,
+          secure: true,
+          sameSite: "None",
+        });
+
+        console.log("Cookie manually set. Redirecting...");
+
+        // Small delay to ensure browser saves the cookie before redirect
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 500);
       } else {
         handleError(message);
       }
     } catch (err) {
-      // Changed 'error' to 'err' to satisfy linter if used or unused
       console.error(err);
       handleError("An error occurred during login.");
     }
-    setInputValue({
-      email: "",
-      password: "",
-    });
   };
 
   return (

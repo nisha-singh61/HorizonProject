@@ -16,33 +16,24 @@ const Home = () => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // --- 1. MEMOIZED LOGOUT FUNCTION ---
   const handleLogout = useCallback(async () => {
-    console.log("Logging out...");
     try {
       await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
     } catch (err) {
       console.error("Server-side logout failed:", err);
     }
-
     removeCookie("token", { path: "/" });
     removeCookie("isLoggedIn", { path: "/" });
     navigate("/login");
   }, [removeCookie, navigate]);
 
-  // --- 2. USER VERIFICATION ---
   useEffect(() => {
     let isMounted = true;
 
     const verifyUser = async () => {
-      console.log("Cookie Check - isLoggedIn:", cookies.isLoggedIn);
+      // LOG 1: Check if cookie is detected
+      console.log("Checking isLoggedIn cookie:", cookies.isLoggedIn);
 
-      // If cookie isn't there yet, wait 800ms (safety for slow browsers)
-      if (!cookies.isLoggedIn) {
-        await new Promise((resolve) => setTimeout(resolve, 800));
-      }
-
-      // Final check for the cookie
       if (!cookies.isLoggedIn) {
         console.warn("No 'isLoggedIn' cookie found. Redirecting to login.");
         if (isMounted) navigate("/login");
@@ -50,32 +41,26 @@ const Home = () => {
       }
 
       try {
-        console.log("Sending POST request to:", `${API_BASE_URL}/`);
-
+        // LOG 2: Verification request
+        console.log("Sending verification to backend...");
         const { data } = await axios.post(
           `${API_BASE_URL}/`,
           {},
           { withCredentials: true }
         );
 
-        console.log("Backend Response Data:", data);
+        console.log("Backend verification response:", data);
 
         if (isMounted) {
           if (!data.status) {
-            console.error("Verification status false. Logging out.");
             handleLogout();
           } else {
-            console.log("Verification Success! User:", data.user);
             setUser(data.user);
             setLoading(false);
           }
         }
       } catch (err) {
-        console.error(
-          "Verification API Error:",
-          err.response?.status,
-          err.message
-        );
+        console.error("Verification Error:", err);
         if (isMounted) handleLogout();
       }
     };
@@ -87,7 +72,7 @@ const Home = () => {
     };
   }, [cookies.isLoggedIn, navigate, handleLogout]);
 
-  // --- 3. SECURITY (BACK BUTTON) ---
+  // Prevent back button after logout
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     const handlePopState = () => {
@@ -98,7 +83,6 @@ const Home = () => {
     return () => window.removeEventListener("popstate", handlePopState);
   }, [handleLogout]);
 
-  // --- 4. RENDER LOGIC ---
   if (loading) {
     return (
       <div
