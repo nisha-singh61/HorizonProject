@@ -252,7 +252,7 @@ app.get("/myWatchlist", userVerification, async (req, res) => {
 // --- Server Listener ---
 mongoose.connect(uri)
     .then(() => {
-        // Add '0.0.0.0' here
+        // Added '0.0.0.0' here
         app.listen(PORT, '0.0.0.0', () => {
             console.log(`Horizon Backend Started on Port ${PORT}`);
             console.log("Database Connected Successfully");
