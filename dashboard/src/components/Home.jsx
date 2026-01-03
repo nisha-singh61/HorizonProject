@@ -8,7 +8,7 @@ import Dashboard from "./Dashboard";
 import Menu from "./Menu";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const HORIZON_URL = import.meta.env.VITE_HORIZON_URL || "http://localhost:5174";
+const HORIZON_URL = import.meta.env.VITE_HORIZON_URL;
 
 const Home = () => {
   const navigate = useNavigate();

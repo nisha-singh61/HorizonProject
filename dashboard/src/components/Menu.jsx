@@ -8,7 +8,7 @@ const Menu = ({ user, onLogout }) => {
 
   // Back to horizon
   const HORIZON_URL =
-    import.meta.env.VITE_HORIZON_URL || "http://localhost:5174";
+    import.meta.env.VITE_HORIZON_URL;
   const brandBlue = "#3d77cd";
 
   const handleBackToHorizon = () => {
