@@ -12,25 +12,21 @@ const HORIZON_URL = import.meta.env.VITE_HORIZON_URL;
 
 const Home = () => {
   const navigate = useNavigate();
-  // cookies[0] is the object, cookies[2] is removeCookie
   const [cookies, , removeCookie] = useCookies(["token", "isLoggedIn"]);
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
 
   // --- 1. MEMOIZED LOGOUT FUNCTION ---
   const handleLogout = useCallback(async () => {
+    console.log("Logging out...");
     try {
-      // Attempt server-side logout to clear HTTP-only cookie
       await axios.post(`${API_BASE_URL}/logout`, {}, { withCredentials: true });
     } catch (err) {
       console.error("Server-side logout failed:", err);
     }
 
-    // Clear client-side markers
     removeCookie("token", { path: "/" });
     removeCookie("isLoggedIn", { path: "/" });
-
-    // Redirect to login
     navigate("/login");
   }, [removeCookie, navigate]);
 
@@ -39,29 +35,47 @@ const Home = () => {
     let isMounted = true;
 
     const verifyUser = async () => {
-      // Check for the client-side cookie first
+      console.log("Cookie Check - isLoggedIn:", cookies.isLoggedIn);
+
+      // If cookie isn't there yet, wait 800ms (safety for slow browsers)
       if (!cookies.isLoggedIn) {
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+
+      // Final check for the cookie
+      if (!cookies.isLoggedIn) {
+        console.warn("No 'isLoggedIn' cookie found. Redirecting to login.");
         if (isMounted) navigate("/login");
         return;
       }
 
       try {
+        console.log("Sending POST request to:", `${API_BASE_URL}/`);
+
         const { data } = await axios.post(
-          `${API_BASE_URL}`,
+          `${API_BASE_URL}/`,
           {},
           { withCredentials: true }
         );
 
+        console.log("Backend Response Data:", data);
+
         if (isMounted) {
           if (!data.status) {
+            console.error("Verification status false. Logging out.");
             handleLogout();
           } else {
+            console.log("Verification Success! User:", data.user);
             setUser(data.user);
             setLoading(false);
           }
         }
       } catch (err) {
-        console.error("Verification error:", err);
+        console.error(
+          "Verification API Error:",
+          err.response?.status,
+          err.message
+        );
         if (isMounted) handleLogout();
       }
     };
@@ -73,29 +87,19 @@ const Home = () => {
     };
   }, [cookies.isLoggedIn, navigate, handleLogout]);
 
-  // --- 3. SECURITY LISTENERS (BACK BUTTON) ---
+  // --- 3. SECURITY (BACK BUTTON) ---
   useEffect(() => {
-    // Push current state to prevent "Back" button from showing sensitive data after logout
     window.history.pushState(null, null, window.location.pathname);
-
     const handlePopState = () => {
       handleLogout();
-      // Redirect to the external landing page
       window.location.href = HORIZON_URL;
     };
-
     window.addEventListener("popstate", handlePopState);
-
-    // NOTE: Removed 'visibilitychange' listener.
-    // It was triggering handleLogout() whenever the tab briefly lost focus during redirect.
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
+    return () => window.removeEventListener("popstate", handlePopState);
   }, [handleLogout]);
 
-  // Show a simple loading state while verifying the user
-  if (loading && cookies.isLoggedIn) {
+  // --- 4. RENDER LOGIC ---
+  if (loading) {
     return (
       <div
         style={{
