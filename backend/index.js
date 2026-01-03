@@ -61,6 +61,11 @@ const mockPriceUpdate = (positions) => {
 // --- Authentication Routes ---
 app.use("/", authRoute);
 
+// for Render's health check
+app.get("/", (req, res) => {
+    res.status(200).send("Horizon Backend is Live!");
+});
+
 // Verification Endpoint
 app.post("/", userVerification, (req, res) => {
     // If the token is verified, return success and the username
@@ -247,7 +252,8 @@ app.get("/myWatchlist", userVerification, async (req, res) => {
 // --- Server Listener ---
 mongoose.connect(uri)
     .then(() => {
-        app.listen(PORT, () => {
+        // Add '0.0.0.0' here
+        app.listen(PORT, '0.0.0.0', () => {
             console.log(`Horizon Backend Started on Port ${PORT}`);
             console.log("Database Connected Successfully");
         });
