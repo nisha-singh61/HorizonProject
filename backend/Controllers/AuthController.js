@@ -14,7 +14,7 @@ module.exports.Signup = async (req, res, next) => {
 
     // 1. Secure Token (HTTP-Only)
     res.cookie("token", token, {
-      httpOnly: true, // CRITICAL SECURITY: Cannot be read by client JS
+      httpOnly: true,
       path: "/",
       sameSite: "Lax",
       maxAge: 3600000,

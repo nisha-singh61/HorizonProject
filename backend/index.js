@@ -12,27 +12,24 @@ const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 const { WatchlistModel } = require("./model/WatchlistModel");
 
-// --------------------------------------------------------------------------
-// 🔥 FIX: Corrected import of defaultWatchlist from its new front-end location.
-// The path goes up one level (..) into the 'dashboard' folder, then into 'src/data'.
-// We use .default because the file now uses 'export default' (ESM syntax).
-// --------------------------------------------------------------------------
-const defaultWatchlistModule = require("../dashboard/src/data/defaultWatchlist"); 
-const defaultWatchlist = defaultWatchlistModule.default;
 
-const { userVerification } = require("./Middlewares/AuthMiddleware"); // IMPORTANT
+const defaultWatchlistModule = require("../dashboard/src/data/defaultWatchlist"); 
+const defaultWatchlist = defaultWatchlistModule ? defaultWatchlistModule.default : [];
+
+const { userVerification } = require("./Middlewares/AuthMiddleware");
 const authRoute = require("./Routes/AuthRoute");
 
 const PORT = process.env.PORT || 3002;
 const uri = process.env.VITE_MONGO_URL;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN;
+const HORIZON_FRONTEND_ORIGIN = process.env.HORIZON_FRONTEND_ORIGIN;
 
 const app = express();
 
-// --- Middleware Setup ---
+//Middleware Setup
 app.use(
     cors({
-        origin: [FRONTEND_ORIGIN],
+        origin: [FRONTEND_ORIGIN, HORIZON_FRONTEND_ORIGIN],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
@@ -40,27 +37,23 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(bodyParser.json());
 
 
-// --- Helper function to simulate market price changes ---
+//Helper function to simulate market price changes
 const mockPriceUpdate = (positions) => {
     // This function simulates a price change for all positions
     return positions.map(pos => {
-        // Generate a small random fluctuation (e.g., +/- 0.5% of the avg price)
+        // Generate a small random fluctuation
         const fluctuation = pos.avg * (Math.random() * 0.01 - 0.005); // +/- 0.5%
         
         // Calculate the new price (LTP)
         const newPrice = pos.avg + fluctuation;
         
-        // IMPORTANT: Update the price field on the object
         pos.price = newPrice; 
 
-        // Update net/day change fields for display (optional, but makes it look realistic)
         const netChange = (newPrice - pos.avg) / pos.avg * 100;
         pos.net = netChange.toFixed(2) + "%";
-        pos.day = pos.net; // For simplicity, setting day change equal to net change
-
+        pos.day = pos.net;
         return pos;
     });
 };
@@ -78,9 +71,8 @@ app.post("/", userVerification, (req, res) => {
     });
 });
 
-// ------------------------------------------------------------------
+
 // PROTECTED & MULTI-USER TRADING ROUTES
-// ------------------------------------------------------------------
 
 // 1. Get all holdings for the CURRENT USER (Filtered by userId)
 app.get("/allHoldings", userVerification, async (req, res) => {
@@ -133,7 +125,7 @@ app.post("/newOrder", userVerification, async (req, res) => {
         let position = await PositionsModel.findOne({ name, userId }); 
 
         if (mode === "BUY") {
-            // --- A. HOLDINGS LOGIC ---
+            //HOLDINGS LOGIC
             if (holding) {
                 const totalValue = (holding.qty * holding.avg) + (qty * price);
                 holding.qty += qty;
@@ -149,7 +141,7 @@ app.post("/newOrder", userVerification, async (req, res) => {
                 });
             }
 
-            // --- B. POSITIONS LOGIC (ADDED) ---
+            //POSITIONS LOGIC
             if (position) {
                 // UPDATE EXISTING POSITION (VWAP CALCULATION)
                 const totalValue = (position.qty * position.avg) + (qty * price);
@@ -165,12 +157,12 @@ app.post("/newOrder", userVerification, async (req, res) => {
                     name, qty, avg: price, price, product, userId,
                     net: "0%", 
                     day: "0%", 
-                    isLoss: false, // Ensure all schema fields are initialized
+                    isLoss: false,
                 });
             }
 
         } else if (mode === "SELL") {
-            // --- C. SELL LOGIC for Holdings ---
+            //SELL LOGIC for Holdings
             if (!holding || holding.qty < qty) {
                 return res.status(400).send("Not enough quantity to sell in Holdings.");
             }
@@ -184,12 +176,11 @@ app.post("/newOrder", userVerification, async (req, res) => {
                 await holding.save();
             }
 
-            // --- D. POSITIONS CLOSURE LOGIC (ADDED) ---
+            //POSITIONS CLOSURE LOGIC
             if (position) {
                 position.qty -= qty;
 
                 if (position.qty === 0) {
-                    // Position is squared off, delete the record
                     await PositionsModel.deleteOne({ name, userId });
                 } else {
                     position.price = price;
@@ -222,10 +213,10 @@ app.get("/allOrders", userVerification, async (req, res) => {
 app.get("/allPositions", userVerification, async (req, res) => {
     try {
         const userId = req.user._id;
-        // 1. Fetch the raw positions data
+        //Fetch the raw positions data
         let allPositions = await PositionsModel.find({ userId: userId });
         
-        // 2. Run the mock update before sending
+        //Run the mock update before sending
         allPositions = mockPriceUpdate(allPositions);
         
         res.json(allPositions);
@@ -243,8 +234,6 @@ app.get("/myWatchlist", userVerification, async (req, res) => {
         const userWatchlistDoc = await WatchlistModel.findOne({ userId: userId }); 
 
         if (!userWatchlistDoc || userWatchlistDoc.stocks.length === 0) {
-            // Use the locally imported defaultWatchlist as a fallback
-            // This now correctly accesses the imported variable, fixing the 500 error.
             return res.json(defaultWatchlist); 
         }
 
@@ -257,8 +246,13 @@ app.get("/myWatchlist", userVerification, async (req, res) => {
 
 
 // --- Server Listener ---
-app.listen(PORT, () => {
-    console.log("App Started");
-    mongoose.connect(uri);
-    console.log("DB connected!");
-});
+mongoose.connect(uri)
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Horizon Backend Started on Port ${PORT}`);
+            console.log("Database Connected Successfully");
+        });
+    })
+    .catch((err) => {
+        console.error("MongoDB Connection Failed:", err);
+    });
