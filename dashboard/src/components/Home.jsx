@@ -15,6 +15,7 @@ const Home = () => {
   const [cookies, , removeCookie] = useCookies(["token", "isLoggedIn"]);
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
+  const [statusMessage, setStatusMessage] = useState("Checking session...");
 
   const handleLogout = useCallback(async () => {
     try {
@@ -31,22 +32,30 @@ const Home = () => {
     let isMounted = true;
 
     const verifyUser = async () => {
-      // LOG 1: Check if cookie is detected
-      console.log("Checking isLoggedIn cookie:", cookies.isLoggedIn);
+      // RETRY LOOP: Give the browser 3 seconds to find the manual cookie
+      let cookieCheckAttempts = 0;
+      while (cookieCheckAttempts < 3 && !cookies.isLoggedIn) {
+        console.log(`Waiting for cookie... Attempt ${cookieCheckAttempts + 1}`);
+        await new Promise((res) => setTimeout(res, 1000));
+        cookieCheckAttempts++;
+      }
+
+      console.log("Final Cookie Check - isLoggedIn:", cookies.isLoggedIn);
 
       if (!cookies.isLoggedIn) {
-        console.warn("No 'isLoggedIn' cookie found. Redirecting to login.");
+        console.warn("No cookie found. Redirecting to login.");
         if (isMounted) navigate("/login");
         return;
       }
 
       try {
-        // LOG 2: Verification request
+        setStatusMessage("Waking up server (this may take a minute)...");
         console.log("Sending verification to backend...");
+
         const { data } = await axios.post(
           `${API_BASE_URL}/`,
           {},
-          { withCredentials: true }
+          { withCredentials: true, timeout: 60000 } // Wait up to 60s for Render to wake up
         );
 
         console.log("Backend verification response:", data);
@@ -60,8 +69,13 @@ const Home = () => {
           }
         }
       } catch (err) {
-        console.error("Verification Error:", err);
-        if (isMounted) handleLogout();
+        console.error("Verification Error (Backend might be offline):", err);
+        // If the server times out, don't immediately kick user out, try again or show error
+        if (isMounted) {
+          setStatusMessage("Server error. Please refresh the page.");
+          // If it's a 401/403, then definitely logout
+          if (err.response?.status === 401) handleLogout();
+        }
       }
     };
 
@@ -72,7 +86,7 @@ const Home = () => {
     };
   }, [cookies.isLoggedIn, navigate, handleLogout]);
 
-  // Prevent back button after logout
+  // Back button protection
   useEffect(() => {
     window.history.pushState(null, null, window.location.pathname);
     const handlePopState = () => {
@@ -88,12 +102,14 @@ const Home = () => {
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           height: "100vh",
         }}
       >
-        <h3>Loading Dashboard...</h3>
+        <h3>{statusMessage}</h3>
+        <p style={{ color: "gray", fontSize: "14px" }}>Please don't refresh.</p>
       </div>
     );
   }
