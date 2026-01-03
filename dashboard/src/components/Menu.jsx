@@ -126,7 +126,7 @@ const Menu = ({ user, onLogout }) => {
 
         {/* Profile and Logout Section */}
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
+          <div className="avatar">AS</div>
           {/* Use the 'user' prop for the username display */}
           <p className="username">{user || "USERID"}</p>
 
