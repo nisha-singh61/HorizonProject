@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const express = require("express");
+app.set("trust proxy", 1);
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -29,7 +30,7 @@ const app = express();
 app.use(
     cors({
         origin: [FRONTEND_ORIGIN, HORIZON_FRONTEND_ORIGIN],
-        methods: ["GET", "POST", "PUT", "DELETE"],
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
         credentials: true,
     })
 );
