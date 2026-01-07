@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { Collapse } from "bootstrap";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,11 +11,12 @@ function Navbar() {
   const handleToggle = () => setIsOpen(!isOpen);
 
   // Auto-close mobile menu on route change
-  useEffect(() => {
+ useEffect(() => {
     const menu = document.getElementById("navIslandContent");
-    // Check if Bootstrap's collapse is actually open before trying to hide it
-    if (window.bootstrap && menu && menu.classList.contains("show")) {
-      const bsCollapse = new window.bootstrap.Collapse(menu, { toggle: false });
+    
+    // 2. Use the imported Collapse class directly
+    if (menu && menu.classList.contains("show")) {
+      const bsCollapse = new Collapse(menu, { toggle: false });
       bsCollapse.hide();
       setIsOpen(false);
     }
